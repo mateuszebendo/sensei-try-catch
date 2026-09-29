@@ -1,28 +1,187 @@
-# .NET
-bin/
-obj/
+# =====================================================================
+# .gitignore do Sensei Try-Catch
+# Padrões sem "/" no início valem em QUALQUER nível de pasta, então
+# cobrem todos os projetos em solucoes/ e exemplos/.
+# Evitamos nomes genéricos (logs/, build/, packages/, out/) que poderiam
+# ignorar pastas de código-fonte com o mesmo nome.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# .NET / C#
+# ---------------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+artifacts/
+publish/
+PublishProfiles/
 *.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.rsuser
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+project.fragment.lock.json
+*.pdb
+*.cache
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage*.info
+BenchmarkDotNet.Artifacts/
+# Segredos locais do ASP.NET (appsettings.json normal continua versionado)
+appsettings.*.local.json
+appsettings.Local.json
+
+# ---------------------------------------------------------------------
+# Node / JavaScript / TypeScript
+# ---------------------------------------------------------------------
+node_modules/
+jspm_packages/
+bower_components/
+.npm/
+.pnpm-store/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+.cache/
+.parcel-cache/
+.turbo/
+.vite/
+.next/
+.nuxt/
+.svelte-kit/
+dist/
+coverage/
+.nyc_output/
+*.cpuprofile
+*.heapprofile
+
+# ---------------------------------------------------------------------
+# Angular
+# ---------------------------------------------------------------------
+.angular/
+/tmp/
+/out-tsc/
+out-tsc/
+*.launch
+.sass-cache/
+connect.lock
+libpeerconnection.log
+testem.log
+typings/
+
+# ---------------------------------------------------------------------
+# Docker / Kubernetes
+# ---------------------------------------------------------------------
+# Dados persistidos por containers de desenvolvimento
+.docker-data/
+docker-data/
+**/volumes/data/
+docker-compose.override.yml
+compose.override.yml
+# Credenciais de cluster e charts empacotados
+kubeconfig
+*.kubeconfig
+.kube/
+charts/*.tgz
+*.tgz
+# Terraform, se aparecer em alguma questão de infraestrutura
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+
+# ---------------------------------------------------------------------
+# Bancos de dados locais
+# ---------------------------------------------------------------------
 *.db
 *.db-shm
 *.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+dump.rdb
 
-# Node / Angular
-node_modules/
-dist/
-.angular/
-coverage/
-
-# IDEs e sistema
-.vs/
-.vscode/
-.idea/
-Thumbs.db
-.DS_Store
-
-# Configuração local do Claude Code
-.claude/settings.local.json
-
-# Segredos
+# ---------------------------------------------------------------------
+# Segredos e certificados (nunca subir)
+# ---------------------------------------------------------------------
 .env
 .env.*
 !.env.example
+!.env.sample
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+secrets.json
+secrets.*.json
+*.secret
+*.secrets
+
+# ---------------------------------------------------------------------
+# Logs e arquivos temporários
+# ---------------------------------------------------------------------
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+
+# ---------------------------------------------------------------------
+# IDEs e editores
+# ---------------------------------------------------------------------
+.vs/
+.idea/
+*.iml
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+*.code-workspace
+.history/
+.fleet/
+
+# ---------------------------------------------------------------------
+# Sistema operacional
+# ---------------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.Spotlight-V100
+.Trashes
+
+# ---------------------------------------------------------------------
+# Claude Code (configuração pessoal; a do projeto em .claude/ é versionada)
+# ---------------------------------------------------------------------
+.claude/settings.local.json
+CLAUDE.local.md
