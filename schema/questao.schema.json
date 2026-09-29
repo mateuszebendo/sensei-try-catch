@@ -3,62 +3,248 @@
   "title": "Questão de software",
   "type": "object",
   "required": [
-    "id", "titulo", "dificuldade", "tecnologias", "conceitos", "contexto",
-    "requisitos_funcionais", "requisitos_nao_funcionais", "restricoes",
-    "criterios_aceite", "dicas", "status", "criada_em"
+    "id",
+    "titulo",
+    "dificuldade",
+    "tecnologias",
+    "conceitos",
+    "contexto",
+    "requisitos_funcionais",
+    "requisitos_nao_funcionais",
+    "arquitetura",
+    "restricoes",
+    "criterios_aceite",
+    "dicas",
+    "status",
+    "criada_em"
   ],
   "properties": {
-    "id": { "type": "string", "pattern": "^Q-\\d{4}$" },
-    "titulo": { "type": "string" },
-    "dificuldade": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "tecnologias": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^Q-\\d{4}$"
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "dificuldade": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "tecnologias": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
     "conceitos": {
       "description": "Conceitos novos que a questão exercita.",
-      "type": "array", "items": { "type": "string" }, "minItems": 1
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
     },
     "conceitos_revisados": {
       "description": "Conceitos de questões anteriores que voltam para fixação.",
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["conceito", "origem", "como_aparece"],
+        "required": [
+          "conceito",
+          "origem",
+          "como_aparece"
+        ],
         "properties": {
-          "conceito": { "type": "string" },
-          "origem": { "type": "string", "pattern": "^Q-\\d{4}$" },
-          "como_aparece": { "type": "string" }
+          "conceito": {
+            "type": "string"
+          },
+          "origem": {
+            "type": "string",
+            "pattern": "^Q-\\d{4}$"
+          },
+          "como_aparece": {
+            "type": "string"
+          }
         }
       }
     },
-    "pre_requisitos": { "type": "array", "items": { "type": "string", "pattern": "^Q-\\d{4}$" } },
-    "contexto": { "description": "Cenário de negócio que motiva o sistema.", "type": "string" },
-    "requisitos_funcionais": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-    "requisitos_nao_funcionais": { "type": "array", "items": { "type": "string" } },
+    "pre_requisitos": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^Q-\\d{4}$"
+      }
+    },
+    "contexto": {
+      "description": "Cenário de negócio que motiva o sistema.",
+      "type": "string"
+    },
+    "requisitos_funcionais": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "requisitos_nao_funcionais": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "arquitetura": {
+      "description": "Arquitetura e estilo definidos pelo Sensei para este projeto. O aluno deve seguir; o Sensei deve saber defender a escolha.",
+      "type": "object",
+      "required": [
+        "estilo",
+        "justificativa",
+        "alternativas_descartadas",
+        "regras",
+        "estrutura_pastas",
+        "convencoes",
+        "trade_offs"
+      ],
+      "properties": {
+        "estilo": {
+          "description": "id de arquiteturas.json",
+          "type": "string"
+        },
+        "justificativa": {
+          "description": "Por que este estilo serve para ESTE projeto, citando características do cenário.",
+          "type": "string"
+        },
+        "alternativas_descartadas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "estilo",
+              "motivo"
+            ],
+            "properties": {
+              "estilo": {
+                "type": "string"
+              },
+              "motivo": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "regras": {
+          "description": "Regras verificáveis na revisão de código.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "estrutura_pastas": {
+          "type": "string"
+        },
+        "convencoes": {
+          "description": "Estilo de código: nomes, formatação, padrões da linguagem, ferramenta de lint/format.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "trade_offs": {
+          "description": "O que se aceita perder com a escolha e quando ela deixaria de servir.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    },
     "restricoes": {
       "description": "Limitações: bibliotecas obrigatórias ou proibidas, versões, regras de arquitetura.",
       "type": "object",
       "properties": {
-        "obrigatorio": { "type": "array", "items": { "type": "string" } },
-        "proibido": { "type": "array", "items": { "type": "string" } },
-        "outras": { "type": "array", "items": { "type": "string" } }
+        "obrigatorio": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proibido": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outras": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
-    "entregaveis": { "type": "array", "items": { "type": "string" } },
-    "criterios_aceite": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-    "desafios_extras": { "type": "array", "items": { "type": "string" } },
+    "entregaveis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "criterios_aceite": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "desafios_extras": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "dicas": {
       "description": "Dicas em ordem crescente de revelação. A skill ajudar-questao libera uma de cada vez.",
-      "type": "array", "items": { "type": "string" }, "minItems": 2
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2
     },
     "referencias": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["titulo", "url"],
-        "properties": { "titulo": { "type": "string" }, "url": { "type": "string" } }
+        "required": [
+          "titulo",
+          "url"
+        ],
+        "properties": {
+          "titulo": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
       }
     },
-    "estimativa_horas": { "type": "number" },
-    "status": { "enum": ["nao_iniciada", "em_andamento", "concluida"] },
-    "criada_em": { "type": "string", "format": "date" }
+    "estimativa_horas": {
+      "type": "number"
+    },
+    "status": {
+      "enum": [
+        "nao_iniciada",
+        "em_andamento",
+        "concluida"
+      ]
+    },
+    "criada_em": {
+      "type": "string",
+      "format": "date"
+    }
   }
 }

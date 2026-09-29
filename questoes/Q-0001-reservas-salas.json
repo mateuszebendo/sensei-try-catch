@@ -2,8 +2,15 @@
   "id": "Q-0001",
   "titulo": "API de reservas de salas de reunião",
   "dificuldade": 1,
-  "tecnologias": ["dotnet"],
-  "conceitos": ["minimal-api", "ef-core", "validacao", "paginacao"],
+  "tecnologias": [
+    "dotnet"
+  ],
+  "conceitos": [
+    "minimal-api",
+    "ef-core",
+    "validacao",
+    "paginacao"
+  ],
   "conceitos_revisados": [],
   "pre_requisitos": [],
   "contexto": "Um coworking com 12 salas de reunião controla as reservas numa planilha compartilhada, e duas equipes já apareceram na mesma sala no mesmo horário. O gerente quer uma API simples que a recepção e um futuro app possam consumir. Cada sala tem nome, capacidade e andar; cada reserva tem sala, responsável, início, fim e número de participantes.",
@@ -19,12 +26,64 @@
   "requisitos_nao_funcionais": [
     "Erros de validação retornam 400 com a lista de campos inválidos; recurso inexistente retorna 404; conflito de horário retorna 409."
   ],
-  "restricoes": {
-    "obrigatorio": ["Minimal APIs (sem controllers)", "EF Core com SQLite", "Migrations para criar o banco"],
-    "proibido": ["Bibliotecas de mapeamento automático (AutoMapper, Mapster)", "Expor as entidades do EF diretamente nas respostas; use DTOs"],
-    "outras": ["Sem autenticação nesta questão", "Sem front-end"]
+  "arquitetura": {
+    "estilo": "vertical-slice",
+    "justificativa": "A API tem só dois recursos (salas e reservas), mas os casos de uso têm regras bem diferentes entre si: criar reserva concentra quase toda a lógica (conflito de horário, capacidade, duração, sala ativa), enquanto listar é filtro e paginação e cancelar é só troca de estado. Organizar por caso de uso deixa cada regra num lugar só e casa com Minimal APIs, em que cada endpoint já é uma unidade. Com um único banco (SQLite via EF Core) e sem previsão de outras entradas além da API, não há infraestrutura a isolar, e o DbContext do EF já cumpre o papel de unidade de trabalho.",
+    "alternativas_descartadas": [
+      {
+        "estilo": "camadas-tradicional",
+        "motivo": "Divide o código por tipo técnico: a funcionalidade de criar reserva ficaria espalhada entre endpoint, ReservaService e ReservaRepository, e o service juntaria criar, listar e cancelar numa classe só. O repositório por cima do EF só repetiria métodos que o DbContext já tem."
+      },
+      {
+        "estilo": "clean-architecture",
+        "motivo": "Quatro projetos, interfaces e mapeamentos para duas entidades e sete requisitos. A proteção que ela dá (trocar banco, várias entradas) não é necessária aqui; a cerimônia esconderia as regras de negócio, que são o ponto da questão."
+      },
+      {
+        "estilo": "cqrs",
+        "motivo": "Leitura e escrita usam o mesmo modelo e o mesmo banco, sem volume que justifique separar. Separar comandos de consultas com uma biblioteca de mediador só adicionaria indireção."
+      }
+    ],
+    "regras": [
+      "Cada caso de uso fica em Features/<Recurso>/<CasoDeUso>/, com o request, o response, a validação e a lógica juntos (ex.: Features/Reservas/CriarReserva/).",
+      "Cada recurso expõe um método de extensão que mapeia suas rotas (ex.: app.MapReservas()); o Program.cs só registra serviços e chama esses métodos.",
+      "Regras de negócio (conflito, capacidade, duração, sala ativa) ficam no caso de uso ou em métodos da entidade, nunca no Program.cs ou em middleware.",
+      "Os casos de uso usam o AppDbContext diretamente; não há repositório genérico nem interfaces de repositório.",
+      "Uma feature não referencia classes de outra feature. Código usado por duas ou mais (ex.: paginação, entidades, DbContext) vai para Shared/ ou Data/.",
+      "Respostas usam DTOs próprios do caso de uso (records); entidades do EF nunca saem na resposta."
+    ],
+    "estrutura_pastas": "src/Reservas.Api/\n  Program.cs\n  Data/            AppDbContext, configurações do EF, Migrations/\n  Domain/          Sala, Reserva (entidades)\n  Shared/          Paginacao, extensões de resultado de erro\n  Features/\n    Salas/         CadastrarSala/, ListarSalas/, ObterSala/, DesativarSala/, SalasEndpoints.cs\n    Reservas/      CriarReserva/, ListarReservas/, ObterReserva/, CancelarReserva/, ReservasEndpoints.cs\ntests/Reservas.Tests/ (opcional nesta questão)",
+    "convencoes": [
+      "Nullable reference types habilitado e sem avisos de nulidade no build.",
+      "Namespaces por arquivo (file-scoped) e um tipo público por arquivo.",
+      "Nomes de domínio em português, iguais às rotas (Sala, Reserva, CriarReserva); termos técnicos em inglês (Endpoint, Request, Response, DbContext).",
+      "Métodos assíncronos terminam em Async e recebem CancellationToken, repassado ao EF Core.",
+      "DTOs de entrada e saída são records imutáveis.",
+      "Arquivo .editorconfig na raiz; dotnet format --verify-no-changes passa sem alterações."
+    ],
+    "trade_offs": [
+      "Aceita alguma duplicação entre fatias (ex.: dois casos de uso buscando a sala do mesmo jeito) em troca de cada funcionalidade ser independente. Extraia para Shared/ só quando a mesma lógica aparecer pela terceira vez.",
+      "Se o sistema crescer para várias entradas (worker de lembretes, app móvel com regras próprias) ou para regras de domínio compartilhadas por muitos casos de uso, vale migrar o núcleo para uma camada de domínio isolada."
+    ]
   },
-  "entregaveis": ["Projeto em solucoes/Q-0001/", "README com comando para rodar e exemplos de requisição (arquivo .http ou curl)"],
+  "restricoes": {
+    "obrigatorio": [
+      "Minimal APIs (sem controllers)",
+      "EF Core com SQLite",
+      "Migrations para criar o banco"
+    ],
+    "proibido": [
+      "Bibliotecas de mapeamento automático (AutoMapper, Mapster)",
+      "Expor as entidades do EF diretamente nas respostas; use DTOs"
+    ],
+    "outras": [
+      "Sem autenticação nesta questão",
+      "Sem front-end"
+    ]
+  },
+  "entregaveis": [
+    "Projeto em solucoes/Q-0001/",
+    "README com comando para rodar e exemplos de requisição (arquivo .http ou curl)"
+  ],
   "criterios_aceite": [
     "POST /reservas com horário que sobrepõe outra reserva ativa da mesma sala retorna 409.",
     "POST /reservas com 20 participantes numa sala de capacidade 8 retorna 400 indicando o campo participantes.",
@@ -32,7 +91,9 @@
     "GET /reservas?pagina=2&tamanho=10 retorna no máximo 10 itens e informa o total de registros.",
     "GET /reservas?salaId=3&de=2026-10-01&ate=2026-10-07 retorna só reservas da sala 3 que começam no intervalo.",
     "Sala desativada recusa novas reservas com 400 ou 409 e mensagem clara.",
-    "O banco é criado do zero rodando as migrations."
+    "O banco é criado do zero rodando as migrations.",
+    "A estrutura de pastas segue a definida em arquitetura.estrutura_pastas e nenhuma pasta em Features/ importa namespace de outra feature.",
+    "dotnet build sem avisos de nulidade e dotnet format --verify-no-changes sem alterações."
   ],
   "desafios_extras": [
     "Endpoint que sugere o próximo horário livre de uma sala para uma duração pedida.",
@@ -40,13 +101,14 @@
   ],
   "dicas": [
     "Pense na condição matemática de sobreposição entre dois intervalos [inicioA, fimA) e [inicioB, fimB). Ela cabe em uma expressão com dois comparadores.",
+    "Antes de codar, crie as pastas das fatias e decida em qual delas cada requisito mora. A regra de sobreposição pertence a CriarReserva ou à entidade Reserva? Justifique para você mesmo.",
     "Separe validações que não dependem do banco (duração, datas) das que dependem (capacidade, conflito). Onde cada uma deve morar?",
     "Para paginação, veja Skip/Take no EF Core e lembre que o total precisa de uma consulta Count() com os mesmos filtros, sem a paginação.",
     "Results.ValidationProblem e Results.Conflict (TypedResults) ajudam a padronizar as respostas de erro das Minimal APIs.",
     "Para o conflito: filtre reservas da mesma sala, não canceladas, onde novoInicio < existente.Fim e novoFim > existente.Inicio. Se existir alguma, é 409."
   ],
   "referencias": [],
-  "estimativa_horas": 4,
+  "estimativa_horas": 5,
   "status": "nao_iniciada",
   "criada_em": "2026-09-28"
 }

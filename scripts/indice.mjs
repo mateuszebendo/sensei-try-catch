@@ -8,10 +8,12 @@ import { fileURLToPath } from "node:url";
 const raiz = join(dirname(fileURLToPath(import.meta.url)), "..");
 const pasta = join(raiz, "questoes");
 const tecnologias = JSON.parse(readFileSync(join(raiz, "tecnologias.json"), "utf8"));
+const arquiteturas = JSON.parse(readFileSync(join(raiz, "arquiteturas.json"), "utf8"));
+const estilosValidos = new Set(arquiteturas.estilos.map((e) => e.id));
 
 const obrigatorios = [
   "id", "titulo", "dificuldade", "tecnologias", "conceitos", "contexto",
-  "requisitos_funcionais", "requisitos_nao_funcionais", "restricoes",
+  "requisitos_funcionais", "requisitos_nao_funcionais", "arquitetura", "restricoes",
   "criterios_aceite", "dicas", "status", "criada_em",
 ];
 const statusValidos = ["nao_iniciada", "em_andamento", "concluida"];
@@ -42,6 +44,19 @@ for (const arquivo of arquivos) {
   if (!Array.isArray(q.dicas) || q.dicas.length < 2) erro("precisa de pelo menos 2 dicas");
   if (!Array.isArray(q.requisitos_funcionais) || q.requisitos_funcionais.length === 0) erro("requisitos_funcionais vazio");
   if (!Array.isArray(q.criterios_aceite) || q.criterios_aceite.length === 0) erro("criterios_aceite vazio");
+
+  const arq = q.arquitetura;
+  if (arq) {
+    const estilos = [].concat(arq.estilo ?? []);
+    if (!estilos.length) erro("arquitetura.estilo ausente");
+    for (const e of estilos) if (!estilosValidos.has(e)) erro(`arquitetura.estilo "${e}" não está em arquiteturas.json`);
+    if (!arq.justificativa?.trim()) erro("arquitetura.justificativa vazia");
+    if (!Array.isArray(arq.alternativas_descartadas) || arq.alternativas_descartadas.length < 1) erro("arquitetura.alternativas_descartadas precisa de pelo menos 1 item");
+    if (!Array.isArray(arq.regras) || arq.regras.length < 2) erro("arquitetura.regras precisa de pelo menos 2 regras");
+    if (!Array.isArray(arq.convencoes) || arq.convencoes.length < 2) erro("arquitetura.convencoes precisa de pelo menos 2 itens");
+    if (!Array.isArray(arq.trade_offs) || arq.trade_offs.length < 1) erro("arquitetura.trade_offs precisa de pelo menos 1 item");
+    if (!arq.estrutura_pastas?.trim()) erro("arquitetura.estrutura_pastas vazia");
+  }
 
   for (const t of q.tecnologias ?? []) {
     if (!tecnologias.ativas.includes(t)) avisos.push(`${arquivo}: tecnologia "${t}" não está em tecnologias.json`);
@@ -103,6 +118,7 @@ const indice = {
     titulo: q.titulo,
     dificuldade: q.dificuldade,
     tecnologias: q.tecnologias,
+    arquitetura: [].concat(q.arquitetura?.estilo ?? []),
     conceitos: q.conceitos,
     conceitos_revisados: (q.conceitos_revisados ?? []).map((r) => r.conceito),
     pre_requisitos: q.pre_requisitos ?? [],
@@ -110,6 +126,9 @@ const indice = {
     criada_em: q.criada_em,
   })),
   cobertura,
+  arquiteturas_usadas: Object.fromEntries(
+    arquiteturas.estilos.map((e) => [e.id, questoes.filter((q) => [].concat(q.arquitetura?.estilo ?? []).includes(e.id)).map((q) => q.id)])
+  ),
 };
 
 writeFileSync(join(pasta, "_indice.json"), JSON.stringify(indice, null, 2) + "\n");

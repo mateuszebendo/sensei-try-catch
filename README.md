@@ -14,6 +14,7 @@ Agente de IA (Claude Code) que formula questões de software em forma de sistema
 | "Me dá 3 questões de angular + dotnet, da 3 à 5" | `formular-questao` |
 | "Travei na Q-0001, o 409 nunca volta" | `ajudar-questao` |
 | "Revisa minha solução da Q-0002" | `ajudar-questao` |
+| "Por que vertical slice e não camadas na Q-0001?" | `ajudar-questao` |
 | "Me mostra um exemplo de interceptor no Angular" | `exemplo` |
 
 Também dá para chamar direto: `/formular-questao dotnet angular nível 4`.
@@ -24,6 +25,7 @@ Também dá para chamar direto: `/formular-questao dotnet angular nível 4`.
 - `solucoes/Q-XXXX/`: onde você implementa.
 - `progresso/`: anotações do Sensei (dicas liberadas, onde você travou).
 - `exemplos/`: mini-projetos de exemplo.
+- `arquiteturas.json`: estilos de arquitetura que o Sensei escolhe para cada projeto.
 - `tecnologias.json`: tecnologias e conceitos. Para adicionar uma tecnologia (ex.: `react`, `docker`), inclua em `ativas` e liste os conceitos.
 
 Depois de mexer numa questão à mão, rode `node scripts/indice.mjs` para validar e atualizar o índice.
@@ -31,3 +33,7 @@ Depois de mexer numa questão à mão, rode `node scripts/indice.mjs` para valid
 ## Como a revisão de conceitos funciona
 
 Cada questão lista `conceitos` (novos) e `conceitos_revisados` (de questões **concluídas**, com a origem). O índice mostra quais conceitos cada tecnologia já cobriu e quais nunca foram usados; o Sensei usa isso para escolher o que é novo e o que volta para fixação. Marque questões como concluídas pedindo ao Sensei para revisar sua solução.
+
+## Arquitetura e estilo
+
+Cada questão define a arquitetura e as convenções de código que você deve seguir (campo `arquitetura`): o estilo, a justificativa para aquele projeto, as alternativas descartadas, as regras, a estrutura de pastas e os trade-offs. Pergunte ao Sensei sobre qualquer escolha; se seu argumento for melhor para o projeto, ele muda.

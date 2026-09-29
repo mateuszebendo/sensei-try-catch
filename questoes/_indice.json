@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-09-29T01:43:57.151Z",
+  "gerado_em": "2026-09-29T02:16:15.198Z",
   "total": 1,
   "proximo_id": "Q-0002",
   "questoes": [
@@ -10,6 +10,9 @@
       "dificuldade": 1,
       "tecnologias": [
         "dotnet"
+      ],
+      "arquitetura": [
+        "vertical-slice"
       ],
       "conceitos": [
         "minimal-api",
@@ -183,5 +186,21 @@
         "avaliacao-de-instrucoes"
       ]
     }
+  },
+  "arquiteturas_usadas": {
+    "camadas-tradicional": [],
+    "vertical-slice": [
+      "Q-0001"
+    ],
+    "clean-architecture": [],
+    "hexagonal": [],
+    "cqrs": [],
+    "monolito-modular": [],
+    "microsservicos": [],
+    "event-driven": [],
+    "angular-feature-based": [],
+    "angular-container-presentational": [],
+    "angular-facade-signals": [],
+    "node-modulos-por-feature": []
   }
 }

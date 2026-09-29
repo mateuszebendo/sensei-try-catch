@@ -11,12 +11,13 @@ Se faltar dificuldade, escolha a próxima que faz sentido pelo histórico (passo
 ## 1. Levantar o que já existe
 
 1. Leia `questoes/_indice.json` (se não existir, rode `node scripts/indice.mjs`).
-2. Leia `tecnologias.json` para a lista de conceitos de cada tecnologia.
+2. Leia `tecnologias.json` para a lista de conceitos de cada tecnologia e `arquiteturas.json` para os estilos disponíveis.
 3. Monte, para as tecnologias pedidas:
    - **conceitos já cobertos** (e em quais questões);
    - **conceitos concluídos** (questões com `status: "concluida"`), que são os candidatos a revisão;
    - **conceitos nunca usados**, que são os candidatos a conceito novo;
-   - a maior dificuldade já feita por tecnologia.
+   - a maior dificuldade já feita por tecnologia;
+   - os estilos de arquitetura já usados (`arquiteturas_usadas`).
 4. Leia por completo as 2–3 questões mais recentes das mesmas tecnologias, para não repetir cenário de negócio nem estrutura de requisitos.
 
 ## 2. Pesquisar
@@ -72,6 +73,21 @@ Questões em que o aluno escreve instruções para um agente de IA (CLAUDE.md, A
 - Restrições típicas: limite de tamanho, proibir regras sem motivo ("NUNCA faça X" sem explicar por quê), obrigar divisão entre CLAUDE.md e skills.
 - Combina bem com outras tecnologias: "escreva as instruções para um agente que mantém a API da Q-0003".
 
+### Arquitetura e convenções
+Preencha o campo `arquitetura`. É obrigatório e o validador confere.
+
+1. **Escolha o estilo** em `arquiteturas.json` (use `niveis`, `quando_usar` e `quando_evitar`). Full stack pode ter dois estilos: `["vertical-slice", "angular-feature-based"]`. Se o projeto pedir um estilo que não está no catálogo, adicione-o lá primeiro.
+2. **Justificativa**: 3–5 frases citando o cenário desta questão (quantos recursos, onde está a regra de negócio, quantas entradas, que infraestrutura). Tem de ser um texto que não serviria para outra questão.
+3. **Alternativas descartadas**: 1–3 estilos plausíveis e por que não servem aqui. É isso que prepara você para responder "por que não Y?".
+4. **Regras**: 4–7 regras verificáveis na revisão de código (onde fica a regra de negócio, o que pode depender do quê, como as rotas são registradas, o que é proibido).
+5. **Estrutura de pastas** concreta, com nomes reais do domínio.
+6. **Convenções**: estilo de código da linguagem (nulidade, nomes, async, imutabilidade, formatação) e a ferramenta que confere (`dotnet format`, ESLint, Prettier, `ng lint`).
+7. **Trade-offs**: o que se aceita perder e em que ponto de crescimento a escolha deixaria de servir.
+
+Adicione 1–2 `criterios_aceite` sobre arquitetura e convenções (ex.: estrutura seguida, formatador sem alterações) e, se útil, uma dica sobre como organizar o código antes de começar.
+
+Escolha deliberada de vez em quando: uma questão pode impor um estilo para o aluno sentir o custo dele ("faça em Clean Architecture e compare com a Q-0001"), desde que a justificativa diga isso abertamente.
+
 ### Requisitos e restrições
 - `requisitos_funcionais`: 4–10 itens concretos e testáveis. Inclua pelo menos uma regra de negócio que exija pensar (conflito, limite, estado, permissão).
 - `requisitos_nao_funcionais`: desempenho, segurança, logs, tempo de resposta, formato de erro etc. Pode ser vazio no nível 1.
@@ -95,6 +111,6 @@ Questões em que o aluno escreve instruções para um agente de IA (CLAUDE.md, A
 
 ## 5. Apresentar
 
-Mostre ao aluno um resumo curto: título, dificuldade, tecnologias, contexto, requisitos e restrições. **Não mostre as dicas.** Diga quais conceitos antigos estão sendo revisados e de onde vêm.
+Mostre ao aluno um resumo curto: título, dificuldade, tecnologias, contexto, requisitos, arquitetura escolhida (com a justificativa em 1–2 frases) e restrições. **Não mostre as dicas.** Diga quais conceitos antigos estão sendo revisados e de onde vêm.
 
 Se o aluno pediu várias questões, faça todas antes de apresentar e garanta que tenham cenários diferentes entre si e uma progressão de dificuldade coerente.

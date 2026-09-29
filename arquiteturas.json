@@ -1,0 +1,101 @@
+{
+  "descricao": "Catálogo de estilos de arquitetura que o Sensei pode escolher para uma questão. O id vai em arquitetura.estilo.",
+  "estilos": [
+    {
+      "id": "camadas-tradicional",
+      "nome": "Camadas tradicional (Controller → Service → Repository)",
+      "escopo": "backend",
+      "niveis": [1, 2, 3],
+      "quando_usar": "CRUD com pouca regra de negócio; equipe acostumada ao padrão; o valor está na previsibilidade.",
+      "quando_evitar": "Muitos casos de uso diferentes: cada feature fica espalhada em três pastas e os services viram classes gigantes."
+    },
+    {
+      "id": "vertical-slice",
+      "nome": "Vertical Slice (uma pasta por caso de uso)",
+      "escopo": "backend",
+      "niveis": [1, 2, 3, 4],
+      "quando_usar": "Casos de uso com regras diferentes entre si; Minimal APIs; quer mudar uma funcionalidade mexendo num lugar só.",
+      "quando_evitar": "Regras de domínio complexas compartilhadas por muitos casos de uso (tende a duplicar lógica)."
+    },
+    {
+      "id": "clean-architecture",
+      "nome": "Clean Architecture (Domain, Application, Infrastructure, Api)",
+      "escopo": "backend",
+      "niveis": [3, 4, 5],
+      "quando_usar": "Domínio rico e duradouro, várias formas de entrada (API, worker, CLI), troca provável de infraestrutura.",
+      "quando_evitar": "Sistemas pequenos: a cerimônia (projetos, interfaces, mapeamentos) custa mais do que protege."
+    },
+    {
+      "id": "hexagonal",
+      "nome": "Hexagonal (Ports and Adapters)",
+      "escopo": "backend",
+      "niveis": [3, 4, 5],
+      "quando_usar": "Núcleo de regra de negócio que precisa ser testado sem banco nem HTTP; várias integrações externas.",
+      "quando_evitar": "Quando quase tudo é leitura e escrita simples no banco."
+    },
+    {
+      "id": "cqrs",
+      "nome": "CQRS (comandos e consultas separados)",
+      "escopo": "backend",
+      "niveis": [3, 4, 5],
+      "quando_usar": "Leituras muito diferentes das escritas (relatórios, dashboards, cache de leitura), volumes assimétricos.",
+      "quando_evitar": "Modelo de leitura igual ao de escrita; aí é só indireção."
+    },
+    {
+      "id": "monolito-modular",
+      "nome": "Monólito modular",
+      "escopo": "backend",
+      "niveis": [4, 5],
+      "quando_usar": "Vários subdomínios com fronteiras claras, um time só, deploy único; prepara uma eventual separação.",
+      "quando_evitar": "Um único subdomínio pequeno."
+    },
+    {
+      "id": "microsservicos",
+      "nome": "Microsserviços",
+      "escopo": "sistema",
+      "niveis": [5],
+      "quando_usar": "Partes com escala, ciclo de deploy ou tecnologia diferentes; o exercício é justamente lidar com rede, consistência e observabilidade.",
+      "quando_evitar": "Quando um monólito modular resolve; o custo operacional é alto."
+    },
+    {
+      "id": "event-driven",
+      "nome": "Orientada a eventos",
+      "escopo": "sistema",
+      "niveis": [4, 5],
+      "quando_usar": "Ações que disparam efeitos em outras partes sem precisar de resposta imediata (notificações, integrações, processamento pesado).",
+      "quando_evitar": "Fluxos que precisam de resposta síncrona e consistência imediata."
+    },
+    {
+      "id": "angular-feature-based",
+      "nome": "Angular por features (core, shared, features com lazy loading)",
+      "escopo": "frontend",
+      "niveis": [1, 2, 3, 4, 5],
+      "quando_usar": "Padrão para quase toda aplicação Angular com mais de uma tela.",
+      "quando_evitar": "Protótipo de uma tela só."
+    },
+    {
+      "id": "angular-container-presentational",
+      "nome": "Angular container/presentational (smart e dumb components)",
+      "escopo": "frontend",
+      "niveis": [2, 3, 4, 5],
+      "quando_usar": "Componentes de UI reutilizáveis e testáveis; separar quem busca dados de quem só exibe.",
+      "quando_evitar": "Telas simples em que a separação só duplica inputs e outputs."
+    },
+    {
+      "id": "angular-facade-signals",
+      "nome": "Angular com facade e estado em signals",
+      "escopo": "frontend",
+      "niveis": [3, 4, 5],
+      "quando_usar": "Estado compartilhado entre telas, cache no cliente, atualização em tempo real.",
+      "quando_evitar": "Estado local de um componente."
+    },
+    {
+      "id": "node-modulos-por-feature",
+      "nome": "Node/JS com módulos por feature (rotas, serviço e dados juntos)",
+      "escopo": "backend",
+      "niveis": [1, 2, 3],
+      "quando_usar": "APIs Express/Node pequenas e médias; equivalente ao vertical slice.",
+      "quando_evitar": "Domínio complexo que pede núcleo isolado (use hexagonal)."
+    }
+  ]
+}

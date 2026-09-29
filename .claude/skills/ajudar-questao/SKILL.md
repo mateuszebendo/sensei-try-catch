@@ -1,6 +1,6 @@
 ---
 name: ajudar-questao
-description: Orienta o aluno em uma questão existente (ex.: "me ajuda na Q-0003", "travei no cache da questão 5", "revisa minha solução") sem entregar a solução pronta. Lê a questão, o código do aluno em solucoes/ e o histórico em progresso/, e indica o próximo passo.
+description: Orienta o aluno em uma questão existente (ex.: "me ajuda na Q-0003", "travei no cache da questão 5", "revisa minha solução", "por que vertical slice e não camadas na Q-0001?") sem entregar a solução pronta. Também defende e discute a arquitetura e as convenções definidas para a questão. Lê a questão, o código do aluno em solucoes/ e o histórico em progresso/, e indica o próximo passo.
 ---
 
 # Ajudar em uma questão
@@ -20,9 +20,22 @@ Descubra em que ponto o aluno está. Classifique:
 - **Não sabe por onde começar** → ajude a quebrar a questão em etapas (ordem de implementação), sem código.
 - **Dúvida conceitual** ("o que é um interceptor?") → explique o conceito em poucas frases; se precisar de código, ofereça a skill `exemplo` com um exemplo **fora do domínio da questão**.
 - **Travado em erro** → leia o erro e o código; aponte *onde* olhar e *por que* o erro acontece, faça ele corrigir.
-- **Funciona, quer revisão** → compare com os `criterios_aceite`, requisitos e restrições. Aponte o que falta e problemas de design, segurança e desempenho.
+- **Funciona, quer revisão** → compare com os `criterios_aceite`, requisitos, restrições, `arquitetura.regras` e `arquitetura.convencoes`. Confira a estrutura de pastas e, se der, rode o formatador/lint da questão. Aponte o que falta e problemas de design, segurança e desempenho.
+- **Dúvida sobre a arquitetura ou o estilo** → veja a seção abaixo.
 
 Se não estiver claro, faça **uma** pergunta objetiva ("O que acontece quando você chama o endpoint? Qual status volta?").
+
+## Perguntas sobre arquitetura e estilo
+
+Quando o aluno perguntar por que a questão usa determinado estilo, regra ou convenção:
+
+1. Leia `arquitetura` da questão (justificativa, alternativas descartadas, trade-offs) e o estilo em `arquiteturas.json`.
+2. Responda **sobre este projeto**: que característica do cenário levou à escolha, que problema concreto ela evita aqui (dê um exemplo com os nomes do domínio: "com camadas, a regra de conflito ficaria no ReservaService junto com listar e cancelar...").
+3. Se ele comparar com outro estilo, diga o que o outro custaria neste projeto e em que cenário o outro seria a escolha certa.
+4. Use o código dele quando existir: mostre onde a regra de arquitetura ajudou ou onde ele a quebrou.
+5. Se o argumento dele for bom, reconheça. Se for melhor para este projeto, aceite, atualize `arquitetura` na questão (justificativa, regras, estrutura), rode `node scripts/indice.mjs` e registre a decisão no progresso. Se não for, explique o que falta no argumento, sem apelar para "boa prática".
+
+Quebra de regra de arquitetura na revisão é tratada como requisito não atendido: aponte a regra, o arquivo e por que a regra existe; ele corrige.
 
 ## 3. Orientar em degraus
 
@@ -52,6 +65,9 @@ Atualize `progresso/Q-XXXX.md` (crie se não existir) com:
 
 ## Histórico
 - 2026-09-28: travou em X; orientado a Y. Próximo passo: Z.
+
+## Decisões de arquitetura
+- mudanças combinadas com o aluno e o motivo
 
 ## Pontos de atenção
 - conceitos em que o aluno teve dificuldade (úteis para revisão em questões futuras)
