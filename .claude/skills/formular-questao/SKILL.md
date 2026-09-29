@@ -81,7 +81,7 @@ Preencha o campo `arquitetura`. É obrigatório e o validador confere.
 2. **Justificativa**: 3–5 frases citando o cenário desta questão (quantos recursos, onde está a regra de negócio, quantas entradas, que infraestrutura). Tem de ser um texto que não serviria para outra questão.
 3. **Alternativas descartadas**: 1–3 estilos plausíveis e por que não servem aqui. É isso que prepara você para responder "por que não Y?".
 4. **Regras**: 4–7 regras verificáveis na revisão de código (onde fica a regra de negócio, o que pode depender do quê, como as rotas são registradas, o que é proibido).
-5. **Estrutura de pastas** concreta, com nomes reais do domínio.
+5. **Estrutura de pastas** como esqueleto: as pastas de topo e **1–2 exemplos** do padrão com nomes reais do domínio (ex.: uma fatia, um componente), seguidos de `...` e de uma frase dizendo que o resto é com o aluno. Não liste todas as pastas, fatias ou arquivos: montar o resto a partir dos requisitos faz parte do exercício.
 6. **Convenções**: estilo de código da linguagem (nulidade, nomes, async, imutabilidade, formatação) e a ferramenta que confere (`dotnet format`, ESLint, Prettier, `ng lint`).
 7. **Trade-offs**: o que se aceita perder e em que ponto de crescimento a escolha deixaria de servir.
 

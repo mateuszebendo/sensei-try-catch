@@ -54,7 +54,7 @@
       "Respostas usam DTOs próprios do caso de uso (records); entidades do EF nunca saem na resposta.",
       "Consultas que dependem de volume (conflito, listagem) filtram no banco; nada de ToListAsync() seguido de filtro em memória."
     ],
-    "estrutura_pastas": "src/Reservas.Api/\n  Program.cs\n  Data/            AppDbContext, configurações do EF, Migrations/\n  Domain/          Sala, Reserva (entidades)\n  Shared/          Paginacao, extensões de resultado de erro\n  Features/\n    Salas/         CadastrarSala/, ListarSalas/, ObterSala/, DesativarSala/, SalasEndpoints.cs\n    Reservas/      CriarReserva/, ListarReservas/, ObterReserva/, CancelarReserva/, ReservasEndpoints.cs\ntests/Reservas.Tests/ (opcional nesta questão)",
+    "estrutura_pastas": "src/Reservas.Api/\n  Program.cs\n  Data/          DbContext e migrations\n  Domain/        entidades\n  Shared/        código usado por mais de uma feature\n  Features/\n    Reservas/\n      CriarReserva/   exemplo de fatia: request, response, validação e lógica juntos\n      ...             as demais fatias de Reservas e de Salas você define a partir dos requisitos",
     "convencoes": [
       "Nullable reference types habilitado e sem avisos de nulidade no build.",
       "Namespaces por arquivo (file-scoped) e um tipo público por arquivo.",

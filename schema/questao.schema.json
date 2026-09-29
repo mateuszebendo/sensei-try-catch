@@ -143,7 +143,8 @@
           "minItems": 2
         },
         "estrutura_pastas": {
-          "type": "string"
+          "type": "string",
+          "description": "Esqueleto com as pastas de topo e só 1–2 exemplos do padrão; o restante o aluno deduz. Não listar todas as pastas nem todos os arquivos."
         },
         "convencoes": {
           "description": "Estilo de código: nomes, formatação, padrões da linguagem, ferramenta de lint/format.",

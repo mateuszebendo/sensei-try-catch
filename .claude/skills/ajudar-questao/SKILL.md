@@ -34,6 +34,7 @@ Quando o aluno perguntar por que a questão usa determinado estilo, regra ou con
 2. Responda **sobre este projeto**: que característica do cenário levou à escolha, que problema concreto ela evita aqui (dê um exemplo com os nomes do domínio: "com camadas, a regra de conflito ficaria no ReservaService junto com listar e cancelar...").
 3. Se ele comparar com outro estilo, diga o que o outro custaria neste projeto e em que cenário o outro seria a escolha certa.
 4. Use o código dele quando existir: mostre onde a regra de arquitetura ajudou ou onde ele a quebrou.
+   Se ele pedir a estrutura de pastas, mostre mais um ou dois exemplos por vez, não a árvore completa; primeiro pergunte onde ele colocaria a próxima peça.
 5. Se o argumento dele for bom, reconheça. Se for melhor para este projeto, aceite, atualize `arquitetura` na questão (justificativa, regras, estrutura), rode `node scripts/indice.mjs` e registre a decisão no progresso. Se não for, explique o que falta no argumento, sem apelar para "boa prática".
 
 Quebra de regra de arquitetura na revisão é tratada como requisito não atendido: aponte a regra, o arquivo e por que a regra existe; ele corrige.
