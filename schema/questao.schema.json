@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Questão de software",
+  "type": "object",
+  "required": [
+    "id", "titulo", "dificuldade", "tecnologias", "conceitos", "contexto",
+    "requisitos_funcionais", "requisitos_nao_funcionais", "restricoes",
+    "criterios_aceite", "dicas", "status", "criada_em"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^Q-\\d{4}$" },
+    "titulo": { "type": "string" },
+    "dificuldade": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "tecnologias": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "conceitos": {
+      "description": "Conceitos novos que a questão exercita.",
+      "type": "array", "items": { "type": "string" }, "minItems": 1
+    },
+    "conceitos_revisados": {
+      "description": "Conceitos de questões anteriores que voltam para fixação.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["conceito", "origem", "como_aparece"],
+        "properties": {
+          "conceito": { "type": "string" },
+          "origem": { "type": "string", "pattern": "^Q-\\d{4}$" },
+          "como_aparece": { "type": "string" }
+        }
+      }
+    },
+    "pre_requisitos": { "type": "array", "items": { "type": "string", "pattern": "^Q-\\d{4}$" } },
+    "contexto": { "description": "Cenário de negócio que motiva o sistema.", "type": "string" },
+    "requisitos_funcionais": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "requisitos_nao_funcionais": { "type": "array", "items": { "type": "string" } },
+    "restricoes": {
+      "description": "Limitações: bibliotecas obrigatórias ou proibidas, versões, regras de arquitetura.",
+      "type": "object",
+      "properties": {
+        "obrigatorio": { "type": "array", "items": { "type": "string" } },
+        "proibido": { "type": "array", "items": { "type": "string" } },
+        "outras": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "entregaveis": { "type": "array", "items": { "type": "string" } },
+    "criterios_aceite": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "desafios_extras": { "type": "array", "items": { "type": "string" } },
+    "dicas": {
+      "description": "Dicas em ordem crescente de revelação. A skill ajudar-questao libera uma de cada vez.",
+      "type": "array", "items": { "type": "string" }, "minItems": 2
+    },
+    "referencias": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["titulo", "url"],
+        "properties": { "titulo": { "type": "string" }, "url": { "type": "string" } }
+      }
+    },
+    "estimativa_horas": { "type": "number" },
+    "status": { "enum": ["nao_iniciada", "em_andamento", "concluida"] },
+    "criada_em": { "type": "string", "format": "date" }
+  }
+}

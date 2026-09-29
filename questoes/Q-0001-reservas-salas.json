@@ -1,0 +1,52 @@
+{
+  "id": "Q-0001",
+  "titulo": "API de reservas de salas de reunião",
+  "dificuldade": 1,
+  "tecnologias": ["dotnet"],
+  "conceitos": ["minimal-api", "ef-core", "validacao", "paginacao"],
+  "conceitos_revisados": [],
+  "pre_requisitos": [],
+  "contexto": "Um coworking com 12 salas de reunião controla as reservas numa planilha compartilhada, e duas equipes já apareceram na mesma sala no mesmo horário. O gerente quer uma API simples que a recepção e um futuro app possam consumir. Cada sala tem nome, capacidade e andar; cada reserva tem sala, responsável, início, fim e número de participantes.",
+  "requisitos_funcionais": [
+    "Cadastrar, listar, consultar por id e desativar salas (desativar não apaga: salas desativadas não aceitam novas reservas).",
+    "Criar, consultar, listar e cancelar reservas.",
+    "Não permitir duas reservas da mesma sala com horários sobrepostos (reservas canceladas não contam).",
+    "Não permitir reserva com número de participantes maior que a capacidade da sala.",
+    "Reservas devem ter duração entre 15 minutos e 4 horas e começar no futuro.",
+    "Listagem de reservas com filtros opcionais por sala e por intervalo de datas, ordenada por início.",
+    "Listagem de reservas paginada (parâmetros pagina e tamanho, tamanho máximo 50)."
+  ],
+  "requisitos_nao_funcionais": [
+    "Erros de validação retornam 400 com a lista de campos inválidos; recurso inexistente retorna 404; conflito de horário retorna 409."
+  ],
+  "restricoes": {
+    "obrigatorio": ["Minimal APIs (sem controllers)", "EF Core com SQLite", "Migrations para criar o banco"],
+    "proibido": ["Bibliotecas de mapeamento automático (AutoMapper, Mapster)", "Expor as entidades do EF diretamente nas respostas; use DTOs"],
+    "outras": ["Sem autenticação nesta questão", "Sem front-end"]
+  },
+  "entregaveis": ["Projeto em solucoes/Q-0001/", "README com comando para rodar e exemplos de requisição (arquivo .http ou curl)"],
+  "criterios_aceite": [
+    "POST /reservas com horário que sobrepõe outra reserva ativa da mesma sala retorna 409.",
+    "POST /reservas com 20 participantes numa sala de capacidade 8 retorna 400 indicando o campo participantes.",
+    "Cancelar uma reserva libera o horário: uma nova reserva no mesmo intervalo é aceita.",
+    "GET /reservas?pagina=2&tamanho=10 retorna no máximo 10 itens e informa o total de registros.",
+    "GET /reservas?salaId=3&de=2026-10-01&ate=2026-10-07 retorna só reservas da sala 3 que começam no intervalo.",
+    "Sala desativada recusa novas reservas com 400 ou 409 e mensagem clara.",
+    "O banco é criado do zero rodando as migrations."
+  ],
+  "desafios_extras": [
+    "Endpoint que sugere o próximo horário livre de uma sala para uma duração pedida.",
+    "Impedir condição de corrida: duas requisições simultâneas para o mesmo horário não podem ambas ser aceitas."
+  ],
+  "dicas": [
+    "Pense na condição matemática de sobreposição entre dois intervalos [inicioA, fimA) e [inicioB, fimB). Ela cabe em uma expressão com dois comparadores.",
+    "Separe validações que não dependem do banco (duração, datas) das que dependem (capacidade, conflito). Onde cada uma deve morar?",
+    "Para paginação, veja Skip/Take no EF Core e lembre que o total precisa de uma consulta Count() com os mesmos filtros, sem a paginação.",
+    "Results.ValidationProblem e Results.Conflict (TypedResults) ajudam a padronizar as respostas de erro das Minimal APIs.",
+    "Para o conflito: filtre reservas da mesma sala, não canceladas, onde novoInicio < existente.Fim e novoFim > existente.Inicio. Se existir alguma, é 409."
+  ],
+  "referencias": [],
+  "estimativa_horas": 4,
+  "status": "nao_iniciada",
+  "criada_em": "2026-09-28"
+}

@@ -1,0 +1,187 @@
+{
+  "gerado_em": "2026-09-29T01:43:57.151Z",
+  "total": 1,
+  "proximo_id": "Q-0002",
+  "questoes": [
+    {
+      "id": "Q-0001",
+      "arquivo": "Q-0001-reservas-salas.json",
+      "titulo": "API de reservas de salas de reunião",
+      "dificuldade": 1,
+      "tecnologias": [
+        "dotnet"
+      ],
+      "conceitos": [
+        "minimal-api",
+        "ef-core",
+        "validacao",
+        "paginacao"
+      ],
+      "conceitos_revisados": [],
+      "pre_requisitos": [],
+      "status": "nao_iniciada",
+      "criada_em": "2026-09-28"
+    }
+  ],
+  "cobertura": {
+    "dotnet": {
+      "usados": {
+        "minimal-api": [
+          "Q-0001"
+        ],
+        "ef-core": [
+          "Q-0001"
+        ],
+        "validacao": [
+          "Q-0001"
+        ],
+        "paginacao": [
+          "Q-0001"
+        ]
+      },
+      "nunca_usados": [
+        "controllers",
+        "injecao-dependencia",
+        "migrations",
+        "middleware",
+        "autenticacao-jwt",
+        "autorizacao-policies",
+        "background-services",
+        "cache-memoria",
+        "cache-distribuido",
+        "logging",
+        "testes-unitarios",
+        "testes-integracao",
+        "geracao-pdf",
+        "upload-arquivos",
+        "tratamento-erros-problem-details",
+        "signalr",
+        "mensageria",
+        "rate-limiting",
+        "health-checks",
+        "openapi",
+        "task-whenall-whenany",
+        "parallel-foreach-async",
+        "plinq",
+        "cancellation-token",
+        "lock-e-sincronizacao",
+        "semaphore-slim",
+        "interlocked",
+        "colecoes-concorrentes",
+        "channels-produtor-consumidor",
+        "async-streams",
+        "concorrencia-otimista-ef",
+        "deadlocks-e-contexto-sincronizacao"
+      ]
+    },
+    "js": {
+      "usados": {},
+      "nunca_usados": [
+        "async-await",
+        "fetch",
+        "modulos-es",
+        "closures",
+        "eventos-dom",
+        "manipulacao-dom",
+        "local-storage",
+        "web-workers",
+        "node-http",
+        "node-streams",
+        "express",
+        "testes-unitarios",
+        "tratamento-erros",
+        "debounce-throttle",
+        "websockets",
+        "indexeddb",
+        "event-loop",
+        "promise-combinadores",
+        "abort-controller",
+        "limite-concorrencia",
+        "async-iterators",
+        "condicoes-de-corrida",
+        "worker-threads",
+        "node-cluster",
+        "shared-array-buffer-atomics",
+        "web-locks"
+      ]
+    },
+    "angular": {
+      "usados": {},
+      "nunca_usados": [
+        "standalone-components",
+        "signals",
+        "roteamento",
+        "guards",
+        "formularios-reativos",
+        "validadores-customizados",
+        "http-client",
+        "interceptors",
+        "rxjs",
+        "servicos-injecao",
+        "lazy-loading",
+        "estado-compartilhado",
+        "change-detection",
+        "pipes",
+        "diretivas",
+        "testes-componentes",
+        "ssr",
+        "defer-blocks"
+      ]
+    },
+    "docker": {
+      "usados": {},
+      "nunca_usados": [
+        "dockerfile",
+        "multi-stage-build",
+        "camadas-e-cache-de-build",
+        "otimizacao-tamanho-imagem",
+        "usuario-nao-root",
+        "volumes",
+        "redes",
+        "docker-compose",
+        "variaveis-ambiente-e-secrets",
+        "healthcheck",
+        "registry-e-tags",
+        "logs-e-debug-containers"
+      ]
+    },
+    "kubernetes": {
+      "usados": {},
+      "nunca_usados": [
+        "pods",
+        "deployments",
+        "services",
+        "configmaps",
+        "secrets",
+        "ingress",
+        "probes-liveness-readiness",
+        "resources-requests-limits",
+        "hpa-autoscaling",
+        "rolling-update-rollback",
+        "namespaces",
+        "persistent-volumes",
+        "statefulsets",
+        "jobs-cronjobs",
+        "helm",
+        "kubectl-debug"
+      ]
+    },
+    "md-para-ia": {
+      "usados": {},
+      "nunca_usados": [
+        "claude-md-agents-md",
+        "skills-skill-md",
+        "contexto-do-projeto",
+        "instrucoes-com-motivo",
+        "estrutura-e-hierarquia",
+        "exemplos-few-shot",
+        "restricoes-e-limites",
+        "formato-de-saida",
+        "divisao-em-skills",
+        "progressive-disclosure",
+        "templates-de-prompt",
+        "avaliacao-de-instrucoes"
+      ]
+    }
+  }
+}
