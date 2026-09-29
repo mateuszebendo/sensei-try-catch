@@ -1,6 +1,6 @@
 ---
 name: ajudar-questao
-description: Orienta o aluno em uma questão existente (ex.: "me ajuda na Q-0003", "travei no cache da questão 5", "revisa minha solução", "por que vertical slice e não camadas na Q-0001?") sem entregar a solução pronta. Também defende e discute a arquitetura e as convenções definidas para a questão. Lê a questão, o código do aluno em solucoes/ e o histórico em progresso/, e indica o próximo passo.
+description: Orienta o aluno em uma questão existente (ex.: "me ajuda na Q-0003", "travei no cache da questão 5", "revisa minha solução", "por que vertical slice e não camadas na Q-0001?", "qual a complexidade do meu código?") sem entregar a solução pronta. Também defende e discute a arquitetura e as convenções definidas para a questão. Lê a questão, o código do aluno em solucoes/ e o histórico em progresso/, e indica o próximo passo.
 ---
 
 # Ajudar em uma questão
@@ -22,6 +22,7 @@ Descubra em que ponto o aluno está. Classifique:
 - **Travado em erro** → leia o erro e o código; aponte *onde* olhar e *por que* o erro acontece, faça ele corrigir.
 - **Funciona, quer revisão** → compare com os `criterios_aceite`, requisitos, restrições, `arquitetura.regras` e `arquitetura.convencoes`. Confira a estrutura de pastas e, se der, rode o formatador/lint da questão. Aponte o que falta e problemas de design, segurança e desempenho.
 - **Dúvida sobre a arquitetura ou o estilo** → veja a seção abaixo.
+- **Complexidade ou estrutura de dados** → veja "Complexidade e estruturas de dados" abaixo.
 
 Se não estiver claro, faça **uma** pergunta objetiva ("O que acontece quando você chama o endpoint? Qual status volta?").
 
@@ -36,6 +37,22 @@ Quando o aluno perguntar por que a questão usa determinado estilo, regra ou con
 5. Se o argumento dele for bom, reconheça. Se for melhor para este projeto, aceite, atualize `arquitetura` na questão (justificativa, regras, estrutura), rode `node scripts/indice.mjs` e registre a decisão no progresso. Se não for, explique o que falta no argumento, sem apelar para "boa prática".
 
 Quebra de regra de arquitetura na revisão é tratada como requisito não atendido: aponte a regra, o arquivo e por que a regra existe; ele corrige.
+
+## Complexidade e estruturas de dados
+
+Para cada item de `requisitos_algoritmicos`:
+
+- **Peça a análise primeiro.** Antes de dar a sua opinião, pergunte qual é a complexidade do código do aluno naquele ponto e por quê. Depois confirme ou corrija, apontando a linha que domina o custo.
+- **Procure custos escondidos**:
+  - loop com `Contains`, `IndexOf`, `find`, `includes` ou `filter` dentro de outro loop;
+  - `ToList()` ou `AsEnumerable()` antes do `Where`;
+  - N+1 queries e consulta sem índice;
+  - `Count()` repetido sobre `IEnumerable` e concatenação de string em loop;
+  - `sort` dentro de loop e cópia de array a cada iteração.
+- **Modo livre**: não diga qual estrutura usar. Degraus: pergunte qual operação se repete → qual custo ela tem hoje → que estrutura torna essa operação barata. Só revele o gabarito (`estruturas`) se o aluno pedir a solução.
+- **Proposta diferente do gabarito**: se ela cumpre a meta, aceite e discuta os trade-offs (memória, simplicidade, manutenção). Se não cumpre, mostre o caso em que ela degrada.
+- **Verifique**: rode os itens de `como_verificar` quando possível (teste de volume, benchmark, `EXPLAIN`). A meta só está atendida com evidência; "parece rápido" não conta.
+- Para explicar a estrutura em si, use a skill `exemplo`, com um cenário diferente do da questão.
 
 ## 3. Orientar em degraus
 

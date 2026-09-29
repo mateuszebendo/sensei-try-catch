@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-09-29T02:16:15.198Z",
+  "gerado_em": "2026-09-29T02:46:16.293Z",
   "total": 1,
   "proximo_id": "Q-0002",
   "questoes": [
@@ -14,11 +14,16 @@
       "arquitetura": [
         "vertical-slice"
       ],
+      "algoritmos": [
+        "indice-btree-banco",
+        "intervalos-sobreposicao"
+      ],
       "conceitos": [
         "minimal-api",
         "ef-core",
         "validacao",
-        "paginacao"
+        "paginacao",
+        "migrations"
       ],
       "conceitos_revisados": [],
       "pre_requisitos": [],
@@ -40,12 +45,14 @@
         ],
         "paginacao": [
           "Q-0001"
+        ],
+        "migrations": [
+          "Q-0001"
         ]
       },
       "nunca_usados": [
         "controllers",
         "injecao-dependencia",
-        "migrations",
         "middleware",
         "autenticacao-jwt",
         "autorizacao-policies",
@@ -74,7 +81,8 @@
         "channels-produtor-consumidor",
         "async-streams",
         "concorrencia-otimista-ef",
-        "deadlocks-e-contexto-sincronizacao"
+        "deadlocks-e-contexto-sincronizacao",
+        "dapper"
       ]
     },
     "js": {
@@ -186,6 +194,33 @@
         "avaliacao-de-instrucoes"
       ]
     }
+  },
+  "algoritmos_usados": {
+    "hash-map-set": [],
+    "ordenacao": [],
+    "busca-binaria": [],
+    "indice-btree-banco": [
+      "Q-0001"
+    ],
+    "intervalos-sobreposicao": [
+      "Q-0001"
+    ],
+    "dois-ponteiros-merge": [],
+    "janela-deslizante": [],
+    "soma-prefixos": [],
+    "ring-buffer": [],
+    "heap-fila-prioridade": [],
+    "trie": [],
+    "lru-cache": [],
+    "grafo-bfs-dfs": [],
+    "ordenacao-topologica": [],
+    "token-bucket": [],
+    "dijkstra": [],
+    "union-find": [],
+    "programacao-dinamica": [],
+    "k-way-merge": [],
+    "consistent-hashing": [],
+    "bloom-filter": []
   },
   "arquiteturas_usadas": {
     "camadas-tradicional": [],

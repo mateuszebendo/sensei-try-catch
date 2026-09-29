@@ -25,6 +25,7 @@ Também dá para chamar direto: `/formular-questao dotnet angular nível 4`.
 - `solucoes/Q-XXXX/`: onde você implementa.
 - `progresso/`: anotações do Sensei (dicas liberadas, onde você travou).
 - `exemplos/`: mini-projetos de exemplo.
+- `algoritmos.json`: estruturas de dados e algoritmos que as questões podem exigir.
 - `arquiteturas.json`: estilos de arquitetura que o Sensei escolhe para cada projeto.
 - `tecnologias.json`: tecnologias e conceitos. Para adicionar uma tecnologia (ex.: `react`, `docker`), inclua em `ativas` e liste os conceitos.
 
@@ -37,3 +38,7 @@ Cada questão lista `conceitos` (novos) e `conceitos_revisados` (de questões **
 ## Arquitetura e estilo
 
 Cada questão define a arquitetura e as convenções de código que você deve seguir (campo `arquitetura`): o estilo, a justificativa para aquele projeto, as alternativas descartadas, as regras, a estrutura de pastas e os trade-offs. Pergunte ao Sensei sobre qualquer escolha; se seu argumento for melhor para o projeto, ele muda.
+
+## Estruturas de dados e complexidade
+
+Algumas questões exigem, em pontos específicos do sistema, uma estrutura de dados ou uma complexidade máxima (campo `requisitos_algoritmicos`), sempre com volume e forma de verificar. Quanto maior o nível, mais frequente e mais livre: no nível 1 a estrutura é dada; nos níveis mais altos você recebe só a meta e escolhe a estrutura.

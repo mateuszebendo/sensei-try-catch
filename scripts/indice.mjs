@@ -10,6 +10,8 @@ const pasta = join(raiz, "questoes");
 const tecnologias = JSON.parse(readFileSync(join(raiz, "tecnologias.json"), "utf8"));
 const arquiteturas = JSON.parse(readFileSync(join(raiz, "arquiteturas.json"), "utf8"));
 const estilosValidos = new Set(arquiteturas.estilos.map((e) => e.id));
+const algoritmos = JSON.parse(readFileSync(join(raiz, "algoritmos.json"), "utf8"));
+const algoritmosValidos = new Set(algoritmos.itens.map((a) => a.id));
 
 const obrigatorios = [
   "id", "titulo", "dificuldade", "tecnologias", "conceitos", "contexto",
@@ -56,6 +58,19 @@ for (const arquivo of arquivos) {
     if (!Array.isArray(arq.convencoes) || arq.convencoes.length < 2) erro("arquitetura.convencoes precisa de pelo menos 2 itens");
     if (!Array.isArray(arq.trade_offs) || arq.trade_offs.length < 1) erro("arquitetura.trade_offs precisa de pelo menos 1 item");
     if (!arq.estrutura_pastas?.trim()) erro("arquitetura.estrutura_pastas vazia");
+  }
+
+  for (const [i, r] of (q.requisitos_algoritmicos ?? []).entries()) {
+    const onde = `requisitos_algoritmicos[${i}]`;
+    for (const c of ["ponto", "modo", "complexidade_tempo", "n", "justificativa"]) if (!r[c]) erro(`${onde}.${c} ausente`);
+    if (r.modo && !["imposto", "livre"].includes(r.modo)) erro(`${onde}.modo deve ser "imposto" ou "livre"`);
+    if (r.modo === "imposto" && !(r.estruturas ?? []).length) erro(`${onde}: modo imposto exige estruturas`);
+    for (const c of ["complexidade_tempo", "complexidade_espaco"]) if (r[c] && !/^O\(.+\)$/.test(r[c])) erro(`${onde}.${c} deve ter a forma O(...)`);
+    if (!Array.isArray(r.como_verificar) || !r.como_verificar.length) erro(`${onde}.como_verificar vazio`);
+    for (const e of r.estruturas ?? []) {
+      if (!algoritmosValidos.has(e)) erro(`${onde}: estrutura "${e}" não está em algoritmos.json`);
+      else if (!algoritmos.itens.find((a) => a.id === e).niveis.includes(q.dificuldade)) avisos.push(`${arquivo}: "${e}" não é indicada para nível ${q.dificuldade}`);
+    }
   }
 
   for (const t of q.tecnologias ?? []) {
@@ -119,6 +134,7 @@ const indice = {
     dificuldade: q.dificuldade,
     tecnologias: q.tecnologias,
     arquitetura: [].concat(q.arquitetura?.estilo ?? []),
+    algoritmos: [...new Set((q.requisitos_algoritmicos ?? []).flatMap((r) => r.estruturas ?? []))],
     conceitos: q.conceitos,
     conceitos_revisados: (q.conceitos_revisados ?? []).map((r) => r.conceito),
     pre_requisitos: q.pre_requisitos ?? [],
@@ -126,6 +142,9 @@ const indice = {
     criada_em: q.criada_em,
   })),
   cobertura,
+  algoritmos_usados: Object.fromEntries(
+    algoritmos.itens.map((a) => [a.id, questoes.filter((q) => (q.requisitos_algoritmicos ?? []).some((r) => (r.estruturas ?? []).includes(a.id))).map((q) => q.id)])
+  ),
   arquiteturas_usadas: Object.fromEntries(
     arquiteturas.estilos.map((e) => [e.id, questoes.filter((q) => [].concat(q.arquitetura?.estilo ?? []).includes(e.id)).map((q) => q.id)])
   ),

@@ -163,6 +163,66 @@
         }
       }
     },
+    "requisitos_algoritmicos": {
+      "description": "Pontos do sistema com estrutura de dados, algoritmo ou complexidade exigidos. Opcional; frequência e dificuldade seguem o nível da questão.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ponto",
+          "modo",
+          "complexidade_tempo",
+          "n",
+          "justificativa",
+          "como_verificar"
+        ],
+        "properties": {
+          "ponto": {
+            "description": "Onde no sistema (caso de uso, endpoint, função).",
+            "type": "string"
+          },
+          "modo": {
+            "description": "imposto: a estrutura é dada. livre: só a meta de complexidade é dada; o aluno escolhe e justifica.",
+            "enum": [
+              "imposto",
+              "livre"
+            ]
+          },
+          "estruturas": {
+            "description": "ids de algoritmos.json. Obrigatório no modo imposto; no modo livre é o gabarito esperado (não mostrar ao aluno).",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "complexidade_tempo": {
+            "description": "Ex.: O(log n + k)",
+            "type": "string",
+            "pattern": "^O\\(.+\\)$"
+          },
+          "complexidade_espaco": {
+            "type": "string",
+            "pattern": "^O\\(.+\\)$"
+          },
+          "n": {
+            "description": "O que n (e outras variáveis) representa, com o volume esperado.",
+            "type": "string"
+          },
+          "justificativa": {
+            "description": "Por que a complexidade importa neste ponto do sistema.",
+            "type": "string"
+          },
+          "como_verificar": {
+            "description": "Teste, benchmark ou evidência que comprova a meta.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
     "restricoes": {
       "description": "Limitações: bibliotecas obrigatórias ou proibidas, versões, regras de arquitetura.",
       "type": "object",

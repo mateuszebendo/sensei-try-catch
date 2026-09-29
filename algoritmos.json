@@ -1,0 +1,242 @@
+{
+  "descricao": "Catálogo de estruturas de dados e algoritmos que as questões podem exigir. O id vai em requisitos_algoritmicos[].estruturas.",
+  "itens": [
+    {
+      "id": "hash-map-set",
+      "nome": "Dicionário / HashSet / Map / Set",
+      "custo_tipico": "busca, inserção e remoção O(1) médio",
+      "uso_em_sistemas": "deduplicar importações, cruzar duas listas sem loop aninhado, índice em memória por chave",
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "ordenacao",
+      "nome": "Ordenação",
+      "custo_tipico": "O(n log n)",
+      "uso_em_sistemas": "rankings, relatórios ordenados, preparar dados para busca binária ou merge",
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "busca-binaria",
+      "nome": "Busca binária",
+      "custo_tipico": "O(log n) sobre dados ordenados",
+      "uso_em_sistemas": "achar faixa de preço, de horário ou de CEP numa tabela ordenada em memória",
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "indice-btree-banco",
+      "nome": "Índice B-tree no banco",
+      "custo_tipico": "busca O(log n), faixa O(log n + k)",
+      "uso_em_sistemas": "consultas por chave e por intervalo sem varrer a tabela; ordem das colunas em índice composto",
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "intervalos-sobreposicao",
+      "nome": "Intervalos: sobreposição e varredura (sweep line)",
+      "custo_tipico": "O(n log n) para ordenar e varrer; O(log n + k) com índice",
+      "uso_em_sistemas": "agenda, conflito de horário, horários livres, ocupação máxima",
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "dois-ponteiros-merge",
+      "nome": "Dois ponteiros / merge de listas ordenadas",
+      "custo_tipico": "O(n + m)",
+      "uso_em_sistemas": "conciliar extrato bancário com lançamentos, comparar duas versões de um cadastro",
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "janela-deslizante",
+      "nome": "Janela deslizante",
+      "custo_tipico": "O(n) total, O(1) por passo",
+      "uso_em_sistemas": "média móvel, métricas dos últimos N minutos, rate limit por janela",
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "soma-prefixos",
+      "nome": "Somas de prefixo",
+      "custo_tipico": "O(n) para montar, O(1) por consulta",
+      "uso_em_sistemas": "total de vendas entre duas datas consultado muitas vezes",
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "ring-buffer",
+      "nome": "Buffer circular",
+      "custo_tipico": "O(1) inserção, memória fixa",
+      "uso_em_sistemas": "últimos N eventos ou logs em memória, histórico limitado",
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "heap-fila-prioridade",
+      "nome": "Heap / fila de prioridade",
+      "custo_tipico": "inserção e remoção O(log n), topo O(1)",
+      "uso_em_sistemas": "fila de atendimento por prioridade, top-k, agendador de tarefas por horário",
+      "niveis": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "trie",
+      "nome": "Trie (árvore de prefixos)",
+      "custo_tipico": "busca por prefixo O(m), m = tamanho do prefixo",
+      "uso_em_sistemas": "autocomplete de produtos, cidades ou comandos",
+      "niveis": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "lru-cache",
+      "nome": "Cache LRU (hash + lista duplamente ligada)",
+      "custo_tipico": "get e put O(1)",
+      "uso_em_sistemas": "cache em memória com limite de itens e descarte do menos usado",
+      "niveis": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "grafo-bfs-dfs",
+      "nome": "Grafos: BFS e DFS",
+      "custo_tipico": "O(V + E)",
+      "uso_em_sistemas": "dependências entre módulos, rede de indicações, detectar ciclo",
+      "niveis": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "ordenacao-topologica",
+      "nome": "Ordenação topológica",
+      "custo_tipico": "O(V + E)",
+      "uso_em_sistemas": "ordem de execução de tarefas, pré-requisitos de cursos, pipeline de build",
+      "niveis": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "token-bucket",
+      "nome": "Token bucket / leaky bucket",
+      "custo_tipico": "O(1) por requisição",
+      "uso_em_sistemas": "rate limiting por cliente, controle de vazão para API externa",
+      "niveis": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "dijkstra",
+      "nome": "Menor caminho (Dijkstra)",
+      "custo_tipico": "O((V + E) log V) com heap",
+      "uso_em_sistemas": "rotas de entrega, menor custo entre pontos",
+      "niveis": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "union-find",
+      "nome": "Union-find (conjuntos disjuntos)",
+      "custo_tipico": "quase O(1) amortizado por operação",
+      "uso_em_sistemas": "agrupar cadastros duplicados, componentes conectados",
+      "niveis": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "programacao-dinamica",
+      "nome": "Programação dinâmica",
+      "custo_tipico": "depende do problema; troca tempo exponencial por polinomial",
+      "uso_em_sistemas": "melhor combinação de descontos, troco, planejamento de capacidade",
+      "niveis": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "k-way-merge",
+      "nome": "Merge de k listas ordenadas",
+      "custo_tipico": "O(n log k) com heap",
+      "uso_em_sistemas": "juntar arquivos ou feeds ordenados de várias fontes",
+      "niveis": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "consistent-hashing",
+      "nome": "Consistent hashing",
+      "custo_tipico": "localização O(log n) no anel",
+      "uso_em_sistemas": "distribuir chaves de cache entre nós com pouca redistribuição",
+      "niveis": [
+        5
+      ]
+    },
+    {
+      "id": "bloom-filter",
+      "nome": "Bloom filter",
+      "custo_tipico": "O(k) por consulta, memória fixa, falso positivo controlado",
+      "uso_em_sistemas": "evitar ida ao banco para chaves que certamente não existem",
+      "niveis": [
+        5
+      ]
+    }
+  ]
+}

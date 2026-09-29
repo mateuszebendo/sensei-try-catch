@@ -11,13 +11,14 @@ Se faltar dificuldade, escolha a próxima que faz sentido pelo histórico (passo
 ## 1. Levantar o que já existe
 
 1. Leia `questoes/_indice.json` (se não existir, rode `node scripts/indice.mjs`).
-2. Leia `tecnologias.json` para a lista de conceitos de cada tecnologia e `arquiteturas.json` para os estilos disponíveis.
+2. Leia `tecnologias.json` para a lista de conceitos de cada tecnologia `arquiteturas.json` para os estilos disponíveis e `algoritmos.json` para as estruturas de dados e algoritmos.
 3. Monte, para as tecnologias pedidas:
    - **conceitos já cobertos** (e em quais questões);
    - **conceitos concluídos** (questões com `status: "concluida"`), que são os candidatos a revisão;
    - **conceitos nunca usados**, que são os candidatos a conceito novo;
    - a maior dificuldade já feita por tecnologia;
-   - os estilos de arquitetura já usados (`arquiteturas_usadas`).
+   - os estilos de arquitetura já usados (`arquiteturas_usadas`);
+   - as estruturas e algoritmos já exigidos (`algoritmos_usados`).
 4. Leia por completo as 2–3 questões mais recentes das mesmas tecnologias, para não repetir cenário de negócio nem estrutura de requisitos.
 
 ## 2. Pesquisar
@@ -88,6 +89,19 @@ Adicione 1–2 `criterios_aceite` sobre arquitetura e convenções (ex.: estrutu
 
 Escolha deliberada de vez em quando: uma questão pode impor um estilo para o aluno sentir o custo dele ("faça em Clean Architecture e compare com a Q-0001"), desde que a justificativa diga isso abertamente.
 
+### Estruturas de dados e complexidade
+Decida se a questão terá `requisitos_algoritmicos` pela tabela de frequência do `CLAUDE.md`. Se tiver:
+
+1. **Escolha o ponto** onde o custo importa de verdade: a operação mais repetida, a que roda sobre o maior volume ou a que tem tempo limite. Exemplos: checar conflito a cada nova reserva, autocomplete a cada tecla digitada, conciliar 200 mil lançamentos por noite.
+2. **Defina n com volume**: "n = reservas da sala; até 100 mil em 5 anos". Sem volume, a meta não significa nada.
+3. **Meta de complexidade** de tempo (e de espaço, quando a memória for limitada) em notação O, considerando o custo do banco e da rede.
+4. **Modo**: `imposto` (diz a estrutura) ou `livre` (só a meta). No modo livre, preencha `estruturas` com o gabarito, que não é mostrado ao aluno.
+5. **Justificativa** ligada ao cenário: o que acontece com uma solução ingênua naquele volume.
+6. **Como verificar**, com pelo menos um item mensurável: teste com volume grande e tempo máximo, benchmark (BenchmarkDotNet, `performance.now()`, `node --cpu-prof`), plano de consulta (`EXPLAIN`) ou contagem de consultas. Sempre exija também uma seção "Análise de complexidade" no README da solução.
+7. Prefira estruturas ainda não praticadas e, a partir do nível 3, reuse uma já praticada em outro contexto (vale como `conceitos_revisados`).
+
+Inclua nos `requisitos_funcionais` ou nos `criterios_aceite` a meta em linguagem de negócio ("responde em menos de 50 ms com 100 mil reservas") e deixe o detalhe técnico em `requisitos_algoritmicos`. Adicione uma dica que leve à estrutura sem nomeá-la cedo demais.
+
 ### Requisitos e restrições
 - `requisitos_funcionais`: 4–10 itens concretos e testáveis. Inclua pelo menos uma regra de negócio que exija pensar (conflito, limite, estado, permissão).
 - `requisitos_nao_funcionais`: desempenho, segurança, logs, tempo de resposta, formato de erro etc. Pode ser vazio no nível 1.
@@ -111,6 +125,6 @@ Escolha deliberada de vez em quando: uma questão pode impor um estilo para o al
 
 ## 5. Apresentar
 
-Mostre ao aluno um resumo curto: título, dificuldade, tecnologias, contexto, requisitos, arquitetura escolhida (com a justificativa em 1–2 frases) e restrições. **Não mostre as dicas.** Diga quais conceitos antigos estão sendo revisados e de onde vêm.
+Mostre ao aluno um resumo curto: título, dificuldade, tecnologias, contexto, requisitos, arquitetura escolhida (com a justificativa em 1–2 frases), restrições e os pontos com meta de complexidade. No modo livre, mostre a meta e esconda a estrutura esperada. **Não mostre as dicas.** Diga quais conceitos antigos estão sendo revisados e de onde vêm.
 
 Se o aluno pediu várias questões, faça todas antes de apresentar e garanta que tenham cenários diferentes entre si e uma progressão de dificuldade coerente.

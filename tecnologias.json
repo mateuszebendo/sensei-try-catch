@@ -11,7 +11,7 @@
       "parallel-foreach-async", "plinq", "cancellation-token", "lock-e-sincronizacao",
       "semaphore-slim", "interlocked", "colecoes-concorrentes",
       "channels-produtor-consumidor", "async-streams", "concorrencia-otimista-ef",
-      "deadlocks-e-contexto-sincronizacao"
+      "deadlocks-e-contexto-sincronizacao", "dapper"
     ],
     "js": [
       "async-await", "fetch", "modulos-es", "closures", "eventos-dom", "manipulacao-dom",

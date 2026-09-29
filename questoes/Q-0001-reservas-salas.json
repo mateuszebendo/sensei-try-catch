@@ -9,7 +9,8 @@
     "minimal-api",
     "ef-core",
     "validacao",
-    "paginacao"
+    "paginacao",
+    "migrations"
   ],
   "conceitos_revisados": [],
   "pre_requisitos": [],
@@ -24,7 +25,8 @@
     "Listagem de reservas paginada (parâmetros pagina e tamanho, tamanho máximo 50)."
   ],
   "requisitos_nao_funcionais": [
-    "Erros de validação retornam 400 com a lista de campos inválidos; recurso inexistente retorna 404; conflito de horário retorna 409."
+    "Erros de validação retornam 400 com a lista de campos inválidos; recurso inexistente retorna 404; conflito de horário retorna 409.",
+    "A verificação de conflito ao criar reserva continua respondendo em menos de 50 ms com 100 mil reservas na mesma sala."
   ],
   "arquitetura": {
     "estilo": "vertical-slice",
@@ -49,7 +51,8 @@
       "Regras de negócio (conflito, capacidade, duração, sala ativa) ficam no caso de uso ou em métodos da entidade, nunca no Program.cs ou em middleware.",
       "Os casos de uso usam o AppDbContext diretamente; não há repositório genérico nem interfaces de repositório.",
       "Uma feature não referencia classes de outra feature. Código usado por duas ou mais (ex.: paginação, entidades, DbContext) vai para Shared/ ou Data/.",
-      "Respostas usam DTOs próprios do caso de uso (records); entidades do EF nunca saem na resposta."
+      "Respostas usam DTOs próprios do caso de uso (records); entidades do EF nunca saem na resposta.",
+      "Consultas que dependem de volume (conflito, listagem) filtram no banco; nada de ToListAsync() seguido de filtro em memória."
     ],
     "estrutura_pastas": "src/Reservas.Api/\n  Program.cs\n  Data/            AppDbContext, configurações do EF, Migrations/\n  Domain/          Sala, Reserva (entidades)\n  Shared/          Paginacao, extensões de resultado de erro\n  Features/\n    Salas/         CadastrarSala/, ListarSalas/, ObterSala/, DesativarSala/, SalasEndpoints.cs\n    Reservas/      CriarReserva/, ListarReservas/, ObterReserva/, CancelarReserva/, ReservasEndpoints.cs\ntests/Reservas.Tests/ (opcional nesta questão)",
     "convencoes": [
@@ -65,6 +68,26 @@
       "Se o sistema crescer para várias entradas (worker de lembretes, app móvel com regras próprias) ou para regras de domínio compartilhadas por muitos casos de uso, vale migrar o núcleo para uma camada de domínio isolada."
     ]
   },
+  "requisitos_algoritmicos": [
+    {
+      "ponto": "Verificação de conflito de horário em CriarReserva",
+      "modo": "imposto",
+      "estruturas": [
+        "indice-btree-banco",
+        "intervalos-sobreposicao"
+      ],
+      "complexidade_tempo": "O(log n + k)",
+      "complexidade_espaco": "O(1)",
+      "n": "n = reservas já cadastradas da sala (até 100 mil ao longo de 5 anos); k = reservas devolvidas pela faixa consultada (poucas, porque uma reserva dura no máximo 4 horas).",
+      "justificativa": "A verificação roda a cada nova reserva. Carregar as reservas da sala para a memória, ou deixar o banco varrer a tabela, custa O(n) e fica mais lento a cada mês de uso, justamente na operação que a recepção faz o dia inteiro. Com um índice composto e uma faixa de busca limitada pela duração máxima, o custo não cresce com o histórico.",
+      "como_verificar": [
+        "Teste que cadastra 100 mil reservas numa sala e mede POST /reservas: responde em menos de 50 ms.",
+        "EXPLAIN QUERY PLAN da consulta de conflito no SQLite mostra SEARCH ... USING INDEX, e não SCAN.",
+        "O log de SQL do EF Core mostra uma única consulta filtrada no banco, sem trazer as reservas da sala para a memória.",
+        "Seção \"Análise de complexidade\" no README explicando a consulta, o índice e por que o custo é O(log n + k)."
+      ]
+    }
+  ],
   "restricoes": {
     "obrigatorio": [
       "Minimal APIs (sem controllers)",
@@ -82,7 +105,7 @@
   },
   "entregaveis": [
     "Projeto em solucoes/Q-0001/",
-    "README com comando para rodar e exemplos de requisição (arquivo .http ou curl)"
+    "README com comando para rodar, exemplos de requisição (arquivo .http ou curl) e seção \"Análise de complexidade\""
   ],
   "criterios_aceite": [
     "POST /reservas com horário que sobrepõe outra reserva ativa da mesma sala retorna 409.",
@@ -93,7 +116,8 @@
     "Sala desativada recusa novas reservas com 400 ou 409 e mensagem clara.",
     "O banco é criado do zero rodando as migrations.",
     "A estrutura de pastas segue a definida em arquitetura.estrutura_pastas e nenhuma pasta em Features/ importa namespace de outra feature.",
-    "dotnet build sem avisos de nulidade e dotnet format --verify-no-changes sem alterações."
+    "dotnet build sem avisos de nulidade e dotnet format --verify-no-changes sem alterações.",
+    "Com 100 mil reservas numa sala, criar uma nova reserva responde em menos de 50 ms, e o plano da consulta de conflito usa índice."
   ],
   "desafios_extras": [
     "Endpoint que sugere o próximo horário livre de uma sala para uma duração pedida.",
@@ -105,10 +129,11 @@
     "Separe validações que não dependem do banco (duração, datas) das que dependem (capacidade, conflito). Onde cada uma deve morar?",
     "Para paginação, veja Skip/Take no EF Core e lembre que o total precisa de uma consulta Count() com os mesmos filtros, sem a paginação.",
     "Results.ValidationProblem e Results.Conflict (TypedResults) ajudam a padronizar as respostas de erro das Minimal APIs.",
-    "Para o conflito: filtre reservas da mesma sala, não canceladas, onde novoInicio < existente.Fim e novoFim > existente.Inicio. Se existir alguma, é 409."
+    "Para o conflito: filtre reservas da mesma sala, não canceladas, onde novoInicio < existente.Fim e novoFim > existente.Inicio. Se existir alguma, é 409.",
+    "Uma reserva dura no máximo 4 horas. Então só pode sobrepor a nova reserva quem começou nas 4 horas anteriores ao início dela, ou depois. Como isso limita a faixa que o índice (SalaId, Inicio) precisa percorrer?"
   ],
   "referencias": [],
-  "estimativa_horas": 5,
+  "estimativa_horas": 6,
   "status": "nao_iniciada",
   "criada_em": "2026-09-28"
 }

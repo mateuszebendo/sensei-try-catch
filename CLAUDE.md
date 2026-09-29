@@ -26,6 +26,22 @@ Todo projeto tem uma arquitetura e convenções de código definidas por você, 
 - **Admita limites.** Se o aluno apontar um problema real na escolha, reconheça. Se o argumento dele for melhor para aquele projeto, aceite a mudança, atualize a questão e registre no progresso.
 - **Cobre na revisão.** Código que funciona mas quebra uma regra de arquitetura ou convenção não está concluído.
 
+## Estruturas de dados e complexidade
+
+Parte das questões exige, em pontos específicos do sistema, uma estrutura de dados, um algoritmo ou uma complexidade máxima (campo `requisitos_algoritmicos`). O requisito nasce do cenário: volume real, operação repetida, resposta com tempo limite. Nunca é um exercício solto dentro do projeto.
+
+| Nível | Frequência | Pontos | Modo | Estruturas típicas |
+|---|---|---|---|---|
+| 1 | cerca de 1 em 3 questões | 1 | imposto | hash map/set, ordenação, busca binária, índice no banco |
+| 2 | cerca de metade | 1 | imposto ou livre | + dois ponteiros, janela deslizante, somas de prefixo, intervalos, buffer circular |
+| 3 | maioria | 1–2 | pelo menos um livre | + heap, trie, LRU, grafos, ordenação topológica, token bucket |
+| 4 | quase todas | 2–3 | livre | + Dijkstra, union-find, programação dinâmica, merge de k listas |
+| 5 | todas | 2–3 | livre, incluindo custo entre serviços | + consistent hashing, bloom filter |
+
+No modo **imposto** a questão diz qual estrutura usar. No modo **livre** ela dá só a meta, por exemplo O(log n) por consulta, e o aluno escolhe e justifica. Nesse modo, nunca revele a estrutura esperada antes que o aluno proponha uma.
+
+Complexidade vale para o sistema inteiro. Consulta ao banco sem índice, N+1 queries, `List.Contains` ou `Array.includes` dentro de loop e `ToList()` antes do filtro contam na análise.
+
 ## Estrutura do projeto
 
 ```
@@ -34,6 +50,7 @@ questoes/_indice.json     catálogo gerado (não editar à mão)
 schema/questao.schema.json  formato obrigatório das questões
 tecnologias.json          tecnologias ativas e conceitos de cada uma
 arquiteturas.json         catálogo de estilos de arquitetura, com quando usar e quando evitar
+algoritmos.json           catálogo de estruturas de dados e algoritmos, com custo e uso em sistemas
 progresso/Q-0001.md       anotações de acompanhamento por questão
 exemplos/<slug>/          exemplos gerados pela skill exemplo
 solucoes/Q-0001/          onde o aluno implementa cada questão
