@@ -12,6 +12,8 @@ const arquiteturas = JSON.parse(readFileSync(join(raiz, "arquiteturas.json"), "u
 const estilosValidos = new Set(arquiteturas.estilos.map((e) => e.id));
 const algoritmos = JSON.parse(readFileSync(join(raiz, "algoritmos.json"), "utf8"));
 const algoritmosValidos = new Set(algoritmos.itens.map((a) => a.id));
+const temas = JSON.parse(readFileSync(join(raiz, "temas.json"), "utf8"));
+const temasPorId = new Map(temas.temas.map((t) => [t.id, t]));
 
 const obrigatorios = [
   "id", "titulo", "dificuldade", "tecnologias", "conceitos", "contexto",
@@ -46,6 +48,8 @@ for (const arquivo of arquivos) {
   if (!Array.isArray(q.dicas) || q.dicas.length < 2) erro("precisa de pelo menos 2 dicas");
   if (!Array.isArray(q.requisitos_funcionais) || q.requisitos_funcionais.length === 0) erro("requisitos_funcionais vazio");
   if (!Array.isArray(q.criterios_aceite) || q.criterios_aceite.length === 0) erro("criterios_aceite vazio");
+
+  if (q.tema !== undefined && !temasPorId.has(q.tema)) erro(`tema "${q.tema}" não está em temas.json`);
 
   const arq = q.arquitetura;
   if (arq) {
@@ -103,6 +107,10 @@ for (const q of questoes) {
   }
 }
 
+for (const t of temas.temas) {
+  for (const a of t.algoritmos ?? []) if (!algoritmosValidos.has(a)) erros.push(`temas.json: tema "${t.id}" usa algoritmo "${a}" que não está em algoritmos.json`);
+}
+
 for (const a of avisos) console.warn("aviso:", a);
 if (erros.length) {
   for (const e of erros) console.error("erro:", e);
@@ -133,6 +141,8 @@ const indice = {
     titulo: q.titulo,
     dificuldade: q.dificuldade,
     tecnologias: q.tecnologias,
+    tema: q.tema ?? null,
+    categoria: temasPorId.get(q.tema)?.categoria ?? null,
     arquitetura: [].concat(q.arquitetura?.estilo ?? []),
     algoritmos: [...new Set((q.requisitos_algoritmicos ?? []).flatMap((r) => r.estruturas ?? []))],
     conceitos: q.conceitos,
@@ -142,6 +152,10 @@ const indice = {
     criada_em: q.criada_em,
   })),
   cobertura,
+  temas_usados: Object.fromEntries(
+    questoes.filter((q) => q.tema).map((q) => [q.tema, questoes.filter((x) => x.tema === q.tema).map((x) => x.id)])
+  ),
+  categorias_recentes: questoes.filter((q) => q.tema).slice(-5).map((q) => temasPorId.get(q.tema)?.categoria),
   algoritmos_usados: Object.fromEntries(
     algoritmos.itens.map((a) => [a.id, questoes.filter((q) => (q.requisitos_algoritmicos ?? []).some((r) => (r.estruturas ?? []).includes(a.id))).map((q) => q.id)])
   ),

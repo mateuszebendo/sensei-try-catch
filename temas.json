@@ -1,0 +1,1865 @@
+{
+  "descricao": "Catálogo de temas para questões. Evita sistemas de cadastro genéricos: cada tema tem um núcleo técnico que exige pensar além de CRUD. O id vai em tema na questão.",
+  "categorias": [
+    "agro",
+    "arte-e-musica",
+    "ciencia-e-natureza",
+    "controle-e-automacao",
+    "energia-e-infraestrutura",
+    "espaco-e-aviacao",
+    "ferramentas-de-desenvolvimento",
+    "financas-e-mercados",
+    "jogos-e-entretenimento",
+    "logistica-e-industria",
+    "saude",
+    "transporte-e-mobilidade"
+  ],
+  "temas": [
+    {
+      "id": "cancela-estacionamento",
+      "nome": "Cancela de estacionamento",
+      "categoria": "controle-e-automacao",
+      "cenario": "Cancela que abre até um ângulo máximo conforme o tipo de veículo, com sensor de presença que impede fechar sobre o carro e comportamento seguro em queda de energia.",
+      "nucleo_tecnico": [
+        "máquina de estados (fechada, abrindo, aberta, fechando, travada, falha)",
+        "limites físicos: ângulo e velocidade angular máximos",
+        "fail-safe e reversão por sensor",
+        "eventos de sensores fora de ordem"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "integracao-numerica"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Uma cancela controlada por API: estados, ângulo máximo por tipo de veículo e bloqueio por sensor.",
+        "mais_complexa": "Estacionamento com várias cancelas, ocupação ao vivo no Angular, pagamento na saída e fila de veículos."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "elevadores",
+      "nome": "Despacho de elevadores",
+      "categoria": "controle-e-automacao",
+      "cenario": "Prédio comercial com vários elevadores; cada chamada deve ser atribuída ao elevador que minimiza a espera, respeitando capacidade e direção.",
+      "nucleo_tecnico": [
+        "algoritmos SCAN/LOOK",
+        "atribuição de chamadas entre vários carros",
+        "simulação por ticks",
+        "métricas de tempo de espera"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "heap-fila-prioridade",
+        "ordenacao"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Um elevador, fila de chamadas e algoritmo LOOK, com simulação por ticks.",
+        "mais_complexa": "Vários elevadores, destination dispatch, painel em tempo real e comparação de algoritmos por métricas."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "semaforo-adaptativo",
+      "nome": "Cruzamento com semáforo adaptativo",
+      "categoria": "controle-e-automacao",
+      "cenario": "Semáforos que ajustam o tempo de verde pelo tamanho da fila medido por sensores, com fase de pedestres e onda verde entre cruzamentos vizinhos.",
+      "nucleo_tecnico": [
+        "máquina de estados com tempos mínimos de segurança",
+        "nunca dois verdes conflitantes",
+        "ajuste por fila medida",
+        "coordenação entre cruzamentos"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "janela-deslizante",
+        "grafo-bfs-dfs"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Um cruzamento com fases fixas e invariante de segurança testada.",
+        "mais_complexa": "Malha de cruzamentos com onda verde, prioridade para ambulância e mapa ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "estufa-automatizada",
+      "nome": "Estufa automatizada",
+      "categoria": "controle-e-automacao",
+      "cenario": "Estufa com sensores de temperatura, umidade e luz que aciona janelas, nebulizadores e iluminação para manter cada cultura na faixa ideal.",
+      "nucleo_tecnico": [
+        "controlador PID ou histerese",
+        "leitura de sensores ruidosos",
+        "perfis por cultura",
+        "alarmes e modo manual"
+      ],
+      "algoritmos": [
+        "controlador-pid",
+        "janela-deslizante",
+        "ring-buffer"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Controle de uma variável (temperatura) com histerese e histórico das últimas leituras.",
+        "mais_complexa": "Várias estufas, PID por variável, dashboard com gráficos e alertas por mensageria."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "eclusa-canal",
+      "nome": "Eclusa de canal navegável",
+      "categoria": "controle-e-automacao",
+      "cenario": "Eclusa que eleva e baixa barcos entre dois níveis de água; as comportas só podem abrir com os níveis igualados e a fila de barcos tem prioridades.",
+      "nucleo_tecnico": [
+        "sequência segura de operações",
+        "simulação do nível de água",
+        "fila com prioridade (emergência, carga perigosa)",
+        "bloqueio de comandos inválidos"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "heap-fila-prioridade",
+        "integracao-numerica"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Ciclo de uma eclusa com invariantes de segurança testadas.",
+        "mais_complexa": "Sistema de várias eclusas encadeadas, agendamento de passagens e painel do operador."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "impressora-3d-gcode",
+      "nome": "Controlador de impressora 3D",
+      "categoria": "controle-e-automacao",
+      "cenario": "Serviço que recebe arquivos G-code, interpreta comandos, estima o tempo de impressão e permite pausar, retomar e cancelar com segurança.",
+      "nucleo_tecnico": [
+        "interpretador de linha de comando (parser)",
+        "fila de comandos com buffer limitado",
+        "estimativa de tempo por movimento",
+        "estado recuperável após falha"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "ring-buffer",
+        "soma-prefixos"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Parser de um subconjunto de G-code e estimativa de tempo total.",
+        "mais_complexa": "Fazenda de impressoras com fila de trabalhos, progresso ao vivo e retomada após queda."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "linha-de-montagem",
+      "nome": "Linha de montagem com estações",
+      "categoria": "controle-e-automacao",
+      "cenario": "Fábrica com esteira e estações de tempos diferentes; o sistema detecta o gargalo, calcula a eficiência (OEE) e reage a paradas.",
+      "nucleo_tecnico": [
+        "simulação de eventos discretos",
+        "detecção de gargalo",
+        "buffers entre estações",
+        "indicadores em tempo real"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "janela-deslizante",
+        "ring-buffer"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Simulação de eventos discretos de uma linha com três estações.",
+        "mais_complexa": "Várias linhas, paradas aleatórias, painel de OEE ao vivo e eventos por mensageria."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "controle-foguete",
+      "nome": "Software de voo de foguete",
+      "categoria": "espaco-e-aviacao",
+      "cenario": "Computador de bordo de um foguete de sondagem: contagem regressiva com pausas, fases de voo detectadas por sensores, telemetria para a base e aborto automático.",
+      "nucleo_tecnico": [
+        "máquina de estados de voo (pré-lançamento, ignição, subida, fim da queima, apogeu, paraquedas, pouso)",
+        "detecção de apogeu com dados ruidosos",
+        "regras de aborto",
+        "telemetria com perda de pacotes"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "integracao-numerica",
+        "janela-deslizante",
+        "ring-buffer"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Máquina de estados de voo alimentada por um arquivo de telemetria gravado.",
+        "mais_complexa": "Simulação física completa, base de controle em Angular com telemetria ao vivo, aborto por várias fontes e replay do voo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "rover-marte",
+      "nome": "Controle de missão de rover em Marte",
+      "categoria": "espaco-e-aviacao",
+      "cenario": "Base de controle que planeja comandos para um rover com atraso de comunicação de vários minutos, energia limitada e terreno com obstáculos.",
+      "nucleo_tecnico": [
+        "latência alta: comandos em lote, sem controle em tempo real",
+        "planejamento de rota em grade com custo de terreno",
+        "orçamento de energia",
+        "autonomia do rover diante de falhas"
+      ],
+      "algoritmos": [
+        "a-estrela",
+        "heap-fila-prioridade",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Planejador de rota em grade com obstáculos e custo de energia.",
+        "mais_complexa": "Simulação com atraso real, fila de comandos, telemetria atrasada e mapa revelado aos poucos."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "rastreio-satelites",
+      "nome": "Agendador de estação terrestre",
+      "categoria": "espaco-e-aviacao",
+      "cenario": "Estação com poucas antenas que precisa decidir quais satélites atender em cada passagem sobre o céu, com prioridades e janelas que se sobrepõem.",
+      "nucleo_tecnico": [
+        "janelas de visibilidade como intervalos",
+        "conflito entre passagens",
+        "prioridade por missão",
+        "replanejamento quando uma antena falha"
+      ],
+      "algoritmos": [
+        "intervalos-sobreposicao",
+        "heap-fila-prioridade",
+        "ordenacao"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Lista de passagens e alocação gulosa de uma antena.",
+        "mais_complexa": "Várias antenas, prioridades, falhas e linha do tempo interativa no Angular."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "suporte-vida-estacao",
+      "nome": "Suporte de vida de estação espacial",
+      "categoria": "espaco-e-aviacao",
+      "cenario": "Monitoramento de oxigênio, CO₂, pressão e energia de uma estação com tripulação; falhas em um sistema afetam os outros e exigem modos degradados.",
+      "nucleo_tecnico": [
+        "modelo de recursos que se consomem e se produzem",
+        "alarmes em cascata com prioridade",
+        "modos de operação degradados",
+        "histerese para evitar alarme oscilante"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "janela-deslizante",
+        "integracao-numerica"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Um módulo com consumo de oxigênio e alarme por faixa.",
+        "mais_complexa": "Estação com vários módulos, falhas injetadas, painel de alarmes ao vivo e procedimentos guiados."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "torre-controle-pista",
+      "nome": "Sequenciamento de pousos e decolagens",
+      "categoria": "espaco-e-aviacao",
+      "cenario": "Aeroporto com uma pista que alterna pousos e decolagens, respeitando separação mínima por categoria de aeronave; emergências furam a fila.",
+      "nucleo_tecnico": [
+        "separação mínima por par de aeronaves",
+        "fila com prioridade dinâmica",
+        "estimativa de horário de pouso",
+        "replanejamento por emergência"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "intervalos-sobreposicao",
+        "ordenacao"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Fila de pousos com separação fixa.",
+        "mais_complexa": "Duas pistas, separação por categoria, emergências e radar simplificado ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "agendador-telescopio",
+      "nome": "Agendador de observatório",
+      "categoria": "espaco-e-aviacao",
+      "cenario": "Telescópio com pedidos de observação de vários pesquisadores; cada alvo só é visível em certas horas e o clima pode cancelar a noite.",
+      "nucleo_tecnico": [
+        "janelas de visibilidade",
+        "maximizar valor científico da noite",
+        "tempo de reposicionamento entre alvos",
+        "replanejar com mudança de clima"
+      ],
+      "algoritmos": [
+        "intervalos-sobreposicao",
+        "heap-fila-prioridade",
+        "programacao-dinamica"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Agenda gulosa por prioridade dentro das janelas.",
+        "mais_complexa": "Otimização por programação dinâmica, clima ao vivo e portal para pesquisadores."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "intertravamento-ferroviario",
+      "nome": "Intertravamento ferroviário",
+      "categoria": "transporte-e-mobilidade",
+      "cenario": "Pátio ferroviário com agulhas e sinais; o operador pede rotas e o sistema só as libera se nenhum trecho, agulha ou sinal entrar em conflito com outra rota ativa.",
+      "nucleo_tecnico": [
+        "malha como grafo",
+        "travamento de rota e liberação progressiva",
+        "invariantes de segurança testadas",
+        "comandos concorrentes do operador"
+      ],
+      "algoritmos": [
+        "grafo-bfs-dfs",
+        "maquina-de-estados-finita",
+        "hash-map-set"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Malha pequena e verificação de conflito entre duas rotas.",
+        "mais_complexa": "Painel de controle em Angular, trens simulados ocupando trechos e liberação automática."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "metro-intervalos",
+      "nome": "Regulação de linha de metrô",
+      "categoria": "transporte-e-mobilidade",
+      "cenario": "Linha de metrô que precisa manter intervalo regular entre trens; atrasos se propagam e o sistema ajusta tempos de parada e velocidade.",
+      "nucleo_tecnico": [
+        "intervalo (headway) entre trens",
+        "propagação de atraso",
+        "regulação por ajuste de parada",
+        "falha de um trem"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "heap-fila-prioridade",
+        "busca-binaria"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Cálculo de intervalos e detecção de agrupamento de trens.",
+        "mais_complexa": "Simulação da linha, regulação automática e diagrama espaço-tempo ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "pedagio-free-flow",
+      "nome": "Pedágio sem cancela (free flow)",
+      "categoria": "transporte-e-mobilidade",
+      "cenario": "Pórticos leem placas em alta velocidade; leituras duplicadas, placas ilegíveis e veículos isentos precisam virar uma cobrança correta por passagem.",
+      "nucleo_tecnico": [
+        "processamento de stream de leituras",
+        "deduplicação por janela de tempo",
+        "leituras com baixa confiança",
+        "cobrança idempotente"
+      ],
+      "algoritmos": [
+        "hash-map-set",
+        "janela-deslizante",
+        "bloom-filter"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Deduplicação de leituras de um pórtico por janela de tempo.",
+        "mais_complexa": "Vários pórticos, mensageria, revisão manual de leituras duvidosas e consulta de débitos."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "drones-entrega",
+      "nome": "Frota de drones de entrega",
+      "categoria": "transporte-e-mobilidade",
+      "cenario": "Drones com bateria limitada entregam pacotes evitando zonas proibidas; alguns precisam parar em estações de recarga no caminho.",
+      "nucleo_tecnico": [
+        "rota com restrição de alcance",
+        "zonas de exclusão",
+        "atribuição de pedidos a drones",
+        "replanejamento com vento ou falha"
+      ],
+      "algoritmos": [
+        "dijkstra",
+        "a-estrela",
+        "heap-fila-prioridade"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Menor rota em grafo com limite de bateria.",
+        "mais_complexa": "Frota inteira, atribuição de pedidos, mapa ao vivo e falhas em voo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "recarga-veiculos-eletricos",
+      "nome": "Recarga de veículos elétricos em condomínio",
+      "categoria": "transporte-e-mobilidade",
+      "cenario": "Garagem com vários carregadores e potência total limitada; a potência é dividida entre os carros conforme prioridade e horário de saída de cada morador.",
+      "nucleo_tecnico": [
+        "distribuição de recurso limitado",
+        "prioridade por prazo",
+        "redistribuição quando um carro chega ou sai",
+        "tarifa por horário"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "janela-deslizante"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Divisão igualitária de potência com limite total.",
+        "mais_complexa": "Prioridade por prazo, tarifa por horário, app do morador e medição em tempo real."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "bicicletas-compartilhadas",
+      "nome": "Rebalanceamento de bicicletas compartilhadas",
+      "categoria": "transporte-e-mobilidade",
+      "cenario": "Estações de bicicletas ficam cheias ou vazias ao longo do dia; caminhões precisam redistribuir as bicicletas antes do pico.",
+      "nucleo_tecnico": [
+        "previsão por histórico",
+        "escolha de estações críticas",
+        "rota do caminhão com capacidade",
+        "métricas de disponibilidade"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "grafo-bfs-dfs",
+        "soma-prefixos"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Identificar estações críticas a partir do histórico.",
+        "mais_complexa": "Plano de rotas para caminhões, mapa ao vivo e previsão por horário."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "rede-eletrica-cascata",
+      "nome": "Rede elétrica e apagão em cascata",
+      "categoria": "energia-e-infraestrutura",
+      "cenario": "Rede com subestações e linhas de capacidade limitada; quando uma linha cai, a carga se redistribui e pode derrubar outras.",
+      "nucleo_tecnico": [
+        "rede como grafo",
+        "propagação de falhas",
+        "ilhas desconectadas",
+        "corte de carga para evitar colapso"
+      ],
+      "algoritmos": [
+        "grafo-bfs-dfs",
+        "union-find",
+        "heap-fila-prioridade"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Detectar ilhas da rede após remover linhas.",
+        "mais_complexa": "Simulação da cascata, corte de carga por prioridade e mapa ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "represa-hidreletrica",
+      "nome": "Operação de represa",
+      "categoria": "energia-e-infraestrutura",
+      "cenario": "Represa que controla comportas para manter o nível dentro da faixa segura, considerando previsão de chuva e demanda de geração.",
+      "nucleo_tecnico": [
+        "balanço de vazão (entrada, saída)",
+        "limites de nível e taxa de variação",
+        "previsão acumulada",
+        "alarmes de cheia"
+      ],
+      "algoritmos": [
+        "integracao-numerica",
+        "soma-prefixos",
+        "janela-deslizante"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Simulação do nível com vazões e alarmes.",
+        "mais_complexa": "Planejamento de abertura com previsão, várias represas em cascata e painel do operador."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "vazamentos-agua",
+      "nome": "Detecção de vazamentos na rede de água",
+      "categoria": "energia-e-infraestrutura",
+      "cenario": "Sensores de pressão e vazão espalhados pela rede de água de um bairro; quedas anormais indicam vazamentos que precisam ser localizados.",
+      "nucleo_tecnico": [
+        "detecção de anomalia em séries temporais",
+        "localização no grafo da rede",
+        "falsos positivos",
+        "priorização de equipes"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "grafo-bfs-dfs",
+        "heap-fila-prioridade"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Detecção de queda anormal num sensor.",
+        "mais_complexa": "Rede inteira, localização provável no grafo, despacho de equipes e mapa."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "datacenter-resfriamento",
+      "nome": "Resfriamento de datacenter",
+      "categoria": "energia-e-infraestrutura",
+      "cenario": "Racks com sensores de temperatura e carga variável; o sistema ajusta a refrigeração e migra carga de racks quentes antes de desligamentos.",
+      "nucleo_tecnico": [
+        "controle por realimentação",
+        "migração de carga",
+        "limites térmicos com antecedência",
+        "custo de energia"
+      ],
+      "algoritmos": [
+        "controlador-pid",
+        "heap-fila-prioridade",
+        "janela-deslizante"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Alarme térmico com tendência por janela.",
+        "mais_complexa": "Controle de refrigeração, migração automática e mapa de calor ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "sismografo",
+      "nome": "Rede de sismógrafos",
+      "categoria": "ciencia-e-natureza",
+      "cenario": "Estações sísmicas enviam leituras contínuas; o sistema detecta o início de um tremor (STA/LTA), correlaciona estações e estima o epicentro.",
+      "nucleo_tecnico": [
+        "detecção de evento por razão de médias (STA/LTA)",
+        "stream contínuo de alta frequência",
+        "correlação entre estações",
+        "estimativa de epicentro"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "ring-buffer",
+        "k-way-merge"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "STA/LTA sobre o arquivo de uma estação.",
+        "mais_complexa": "Várias estações ao vivo, epicentro estimado e mapa com alertas."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "incendio-florestal",
+      "nome": "Simulador de incêndio florestal",
+      "categoria": "ciencia-e-natureza",
+      "cenario": "Simulação da propagação de fogo numa floresta com vento, umidade e tipo de vegetação, usada para decidir onde posicionar brigadas.",
+      "nucleo_tecnico": [
+        "autômato celular",
+        "influência do vento",
+        "posicionamento de aceiros",
+        "simulação reproduzível com semente"
+      ],
+      "algoritmos": [
+        "automato-celular",
+        "grafo-bfs-dfs",
+        "heap-fila-prioridade"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Autômato celular simples com vento.",
+        "mais_complexa": "Simulação interativa no Angular, brigadas e comparação de estratégias."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "ecossistema",
+      "nome": "Ecossistema predador-presa",
+      "categoria": "ciencia-e-natureza",
+      "cenario": "Simulação de populações de presas e predadores num terreno, com reprodução, fome e estações do ano.",
+      "nucleo_tecnico": [
+        "simulação por ticks",
+        "equilíbrio populacional",
+        "agentes com regras simples",
+        "visualização da evolução"
+      ],
+      "algoritmos": [
+        "integracao-numerica",
+        "automato-celular",
+        "hash-map-set"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Modelo de equações com gráfico das populações.",
+        "mais_complexa": "Agentes no mapa, parâmetros ajustáveis ao vivo e cenários salvos."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "estacao-meteorologica",
+      "nome": "Estação meteorológica",
+      "categoria": "ciencia-e-natureza",
+      "cenario": "Rede de estações que mede temperatura, chuva e vento; o sistema calcula médias, acumulados e emite alertas de tempestade.",
+      "nucleo_tecnico": [
+        "agregação de séries temporais",
+        "acumulados por período",
+        "alertas por limiar e tendência",
+        "dados faltantes"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "soma-prefixos",
+        "ring-buffer"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Ingestão de leituras e médias por hora.",
+        "mais_complexa": "Rede de estações, alertas por mensageria e gráficos ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "colmeias",
+      "nome": "Colmeias monitoradas",
+      "categoria": "ciencia-e-natureza",
+      "cenario": "Apicultor com sensores de peso, temperatura e som nas colmeias; o sistema detecta produção de mel, doença e sinais de enxameamento.",
+      "nucleo_tecnico": [
+        "séries temporais por colmeia",
+        "detecção de eventos (queda brusca de peso)",
+        "comparação entre colmeias",
+        "alertas no celular"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "ring-buffer"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Detecção de queda de peso por janela.",
+        "mais_complexa": "Apiário inteiro, painel comparativo e notificações em tempo real."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "rastreio-fauna",
+      "nome": "Rastreamento de fauna",
+      "categoria": "ciencia-e-natureza",
+      "cenario": "Animais com coleiras GPS; pesquisadores definem cercas virtuais e querem saber quando um animal entra em área de risco ou muda o padrão de movimento.",
+      "nucleo_tecnico": [
+        "geocerca (ponto em polígono)",
+        "trajetórias",
+        "detecção de mudança de comportamento",
+        "dados irregulares"
+      ],
+      "algoritmos": [
+        "hash-map-set",
+        "busca-binaria",
+        "janela-deslizante"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Verificar se pontos estão dentro de uma cerca.",
+        "mais_complexa": "Mapa ao vivo, histórico de trajetórias e alertas por área."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "triagem-pronto-socorro",
+      "nome": "Triagem de pronto-socorro",
+      "categoria": "saude",
+      "cenario": "Pacientes são classificados por cor de risco, cada cor tem tempo máximo de espera e a classificação pode mudar enquanto o paciente aguarda.",
+      "nucleo_tecnico": [
+        "fila de prioridade com reclassificação",
+        "tempo máximo por cor",
+        "alertas de espera excedida",
+        "painel da sala de espera"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Fila por cor com ordem de chegada dentro da cor.",
+        "mais_complexa": "Reclassificação, vários médicos, painel ao vivo e indicadores do plantão."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "banco-sangue",
+      "nome": "Banco de sangue",
+      "categoria": "saude",
+      "cenario": "Bolsas de sangue com tipo, fator Rh e validade; pedidos de hospitais precisam de bolsas compatíveis, usando primeiro as que vencem antes.",
+      "nucleo_tecnico": [
+        "regras de compatibilidade",
+        "saída por vencimento",
+        "estoque mínimo por tipo",
+        "rastreabilidade de cada bolsa"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "hash-map-set"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Busca de bolsas compatíveis por validade.",
+        "mais_complexa": "Vários hemocentros, transferência entre eles e alertas de estoque."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "monitor-sinais-vitais",
+      "nome": "Central de monitoramento de sinais vitais",
+      "categoria": "saude",
+      "cenario": "Central de enfermagem recebe frequência cardíaca, saturação e pressão de vários leitos; alarmes precisam ser confiáveis sem gerar fadiga.",
+      "nucleo_tecnico": [
+        "stream de sinais",
+        "alarmes com histerese e tempo mínimo",
+        "prioridade de alarmes",
+        "reconhecimento de alarme pela equipe"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "ring-buffer",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Alarme por faixa com histerese num leito.",
+        "mais_complexa": "Vários leitos ao vivo no Angular, escalonamento de alarmes e histórico."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "xadrez-online",
+      "nome": "Partidas de xadrez online",
+      "categoria": "jogos-e-entretenimento",
+      "cenario": "Plataforma de partidas com validação de lances, relógio por jogador e partidas ao vivo entre dois navegadores.",
+      "nucleo_tecnico": [
+        "validação de regras",
+        "relógio com incremento",
+        "sincronização em tempo real",
+        "detecção de repetição de posição"
+      ],
+      "algoritmos": [
+        "hash-map-set",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Validação de lances de algumas peças e relógio.",
+        "mais_complexa": "Partidas ao vivo, espectadores, reconexão e histórico."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "servidor-jogo-multiplayer",
+      "nome": "Servidor de jogo multiplayer",
+      "categoria": "jogos-e-entretenimento",
+      "cenario": "Jogo de arena em tempo real: o servidor roda em ticks fixos, recebe comandos dos jogadores e mantém o estado autoritativo com latências diferentes.",
+      "nucleo_tecnico": [
+        "loop de tick fixo",
+        "estado autoritativo no servidor",
+        "compensação de latência",
+        "snapshots e interpolação"
+      ],
+      "algoritmos": [
+        "ring-buffer",
+        "janela-deslizante",
+        "hash-map-set"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Loop de tick e movimento de jogadores.",
+        "mais_complexa": "Vários jogadores, compensação de latência, salas e escala horizontal."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "torneio-suico",
+      "nome": "Torneio em sistema suíço",
+      "categoria": "jogos-e-entretenimento",
+      "cenario": "Torneio em que, a cada rodada, jogadores com pontuações parecidas se enfrentam sem repetir adversários, com rating ELO atualizado.",
+      "nucleo_tecnico": [
+        "pareamento por pontuação",
+        "restrição de não repetir adversário",
+        "desempate",
+        "cálculo de rating"
+      ],
+      "algoritmos": [
+        "ordenacao",
+        "grafo-bfs-dfs",
+        "hash-map-set"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Pareamento simples e atualização de ELO.",
+        "mais_complexa": "Torneio completo com desempates, chaveamento visual e resultados ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "escape-room",
+      "nome": "Escape room digital",
+      "categoria": "jogos-e-entretenimento",
+      "cenario": "Sala de fuga com enigmas que dependem uns dos outros, dicas liberadas por tempo e várias equipes jogando ao mesmo tempo.",
+      "nucleo_tecnico": [
+        "dependência entre enigmas",
+        "liberação de dicas temporizada",
+        "estado por equipe",
+        "ranking"
+      ],
+      "algoritmos": [
+        "ordenacao-topologica",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Grafo de enigmas e progresso de uma equipe.",
+        "mais_complexa": "Várias equipes ao vivo, painel do mestre de jogo e editor de salas."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "mapas-procedurais",
+      "nome": "Gerador de masmorras",
+      "categoria": "jogos-e-entretenimento",
+      "cenario": "Gerador de mapas de masmorra para um jogo: salas e corredores aleatórios, mas sempre com caminho da entrada até a saída.",
+      "nucleo_tecnico": [
+        "geração com semente reproduzível",
+        "garantia de conectividade",
+        "distribuição de itens por dificuldade",
+        "visualização"
+      ],
+      "algoritmos": [
+        "union-find",
+        "grafo-bfs-dfs",
+        "automato-celular"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Geração de salas e corredores garantindo conectividade.",
+        "mais_complexa": "Vários algoritmos de geração, editor visual e exportação."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "sequenciador-musical",
+      "nome": "Sequenciador musical no navegador",
+      "categoria": "arte-e-musica",
+      "cenario": "Bateria eletrônica em grade: padrões de 16 passos, vários instrumentos, BPM ajustável e reprodução sem atraso perceptível.",
+      "nucleo_tecnico": [
+        "temporização precisa (agendar à frente do tempo)",
+        "estado da grade",
+        "salvar e compartilhar padrões",
+        "sincronia entre faixas"
+      ],
+      "algoritmos": [
+        "ring-buffer",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Sequenciador de uma faixa com BPM.",
+        "mais_complexa": "Várias faixas, gravação, colaboração em tempo real e padrões salvos no servidor."
+      },
+      "tecnologias_que_combinam": [
+        "js",
+        "angular",
+        "dotnet"
+      ]
+    },
+    {
+      "id": "iluminacao-show",
+      "nome": "Mesa de iluminação de show",
+      "categoria": "arte-e-musica",
+      "cenario": "Software que controla refletores de um show por uma lista de cenas (cues) com transições suaves, sincronizadas com a música.",
+      "nucleo_tecnico": [
+        "lista de cenas com tempos",
+        "interpolação de valores",
+        "cenas sobrepostas",
+        "modo ensaio e modo show"
+      ],
+      "algoritmos": [
+        "intervalos-sobreposicao",
+        "maquina-de-estados-finita",
+        "busca-binaria"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Execução de uma lista de cenas com transições.",
+        "mais_complexa": "Palco visual no Angular, sincronia por tempo e controle remoto pelo celular."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "legendas-sincronizadas",
+      "nome": "Legendas sincronizadas",
+      "categoria": "arte-e-musica",
+      "cenario": "Player que exibe legendas (de autoria do usuário) sincronizadas com o áudio, permite ajustar atrasos e buscar por trecho.",
+      "nucleo_tecnico": [
+        "busca pelo tempo atual",
+        "legendas sobrepostas",
+        "ajuste de atraso global e por trecho",
+        "importar e exportar formatos"
+      ],
+      "algoritmos": [
+        "busca-binaria",
+        "intervalos-sobreposicao"
+      ],
+      "niveis": [
+        1,
+        2,
+        3
+      ],
+      "variacoes": {
+        "mais_simples": "Busca da legenda ativa por tempo.",
+        "mais_complexa": "Editor visual de legendas com linha do tempo e colaboração."
+      },
+      "tecnologias_que_combinam": [
+        "js",
+        "angular",
+        "dotnet"
+      ]
+    },
+    {
+      "id": "arte-generativa",
+      "nome": "Galeria de arte generativa",
+      "categoria": "arte-e-musica",
+      "cenario": "Plataforma em que obras são geradas por regras e semente; o mesmo código e semente sempre produzem a mesma imagem.",
+      "nucleo_tecnico": [
+        "geração determinística",
+        "renderização em canvas",
+        "parâmetros salvos",
+        "processamento pesado fora da thread principal"
+      ],
+      "algoritmos": [
+        "automato-celular",
+        "hash-map-set"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Gerador de uma obra por semente.",
+        "mais_complexa": "Galeria com várias obras, renderização em web worker e exportação em alta resolução."
+      },
+      "tecnologias_que_combinam": [
+        "js",
+        "angular",
+        "dotnet"
+      ]
+    },
+    {
+      "id": "matching-engine",
+      "nome": "Motor de casamento de ordens",
+      "categoria": "financas-e-mercados",
+      "cenario": "Livro de ofertas de uma bolsa: ordens de compra e venda casam por preço e, no mesmo preço, por ordem de chegada.",
+      "nucleo_tecnico": [
+        "prioridade preço-tempo",
+        "ordens a mercado, limitadas e cancelamento",
+        "execução parcial",
+        "latência e determinismo"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "hash-map-set",
+        "ring-buffer"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Livro de ofertas com ordens limitadas.",
+        "mais_complexa": "Vários ativos, livro ao vivo no Angular, replay de pregão e testes de carga."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "leilao-tempo-real",
+      "nome": "Leilão em tempo real",
+      "categoria": "financas-e-mercados",
+      "cenario": "Leilão online em que o prazo se estende quando chega lance nos últimos segundos e muitos lances podem chegar ao mesmo tempo.",
+      "nucleo_tecnico": [
+        "concorrência entre lances",
+        "extensão de prazo (anti-sniping)",
+        "lance automático com teto",
+        "resultado consistente"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Um leilão com lances concorrentes e extensão de prazo.",
+        "mais_complexa": "Vários leilões ao vivo, lance automático e escala horizontal."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "deteccao-fraude",
+      "nome": "Detecção de fraude em transações",
+      "categoria": "financas-e-mercados",
+      "cenario": "Stream de transações de cartão; regras detectam compras rápidas demais, valores fora do padrão e viagens impossíveis entre duas cidades.",
+      "nucleo_tecnico": [
+        "regras por janela de tempo",
+        "perfil por cartão",
+        "velocidade geográfica impossível",
+        "fila de revisão"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "hash-map-set",
+        "bloom-filter"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Regra de velocidade por janela de tempo.",
+        "mais_complexa": "Motor de regras configurável, mensageria e painel de revisão."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "conciliacao-bancaria",
+      "nome": "Conciliação bancária",
+      "categoria": "financas-e-mercados",
+      "cenario": "Empresa precisa casar o extrato do banco com seus lançamentos, aceitando diferenças de data e de centavos e apontando o que sobrou.",
+      "nucleo_tecnico": [
+        "casamento de duas listas ordenadas",
+        "tolerância de data e valor",
+        "um-para-muitos",
+        "relatório de pendências"
+      ],
+      "algoritmos": [
+        "dois-ponteiros-merge",
+        "ordenacao",
+        "hash-map-set"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Casamento exato por valor e data.",
+        "mais_complexa": "Tolerâncias, casamento um-para-muitos, importação de arquivos grandes e tela de revisão."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "arbitragem-cambio",
+      "nome": "Detector de arbitragem de câmbio",
+      "categoria": "financas-e-mercados",
+      "cenario": "Cotações entre várias moedas mudam o tempo todo; o sistema procura ciclos de conversão que terminam com mais dinheiro do que começaram.",
+      "nucleo_tecnico": [
+        "moedas como grafo ponderado",
+        "ciclo de ganho",
+        "cotações em tempo real",
+        "custo de transação"
+      ],
+      "algoritmos": [
+        "grafo-bfs-dfs",
+        "hash-map-set"
+      ],
+      "niveis": [
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Detectar ciclo de ganho num grafo fixo.",
+        "mais_complexa": "Cotações ao vivo, alertas e visualização do grafo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "porto-conteineres",
+      "nome": "Pátio de contêineres",
+      "categoria": "logistica-e-industria",
+      "cenario": "Pátio de porto empilha contêineres; o sistema escolhe onde empilhar cada um para minimizar remanejamentos na hora de embarcar.",
+      "nucleo_tecnico": [
+        "pilhas com limite de altura",
+        "ordem de retirada conhecida",
+        "custo de remanejamento",
+        "guindastes concorrentes"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "programacao-dinamica",
+        "hash-map-set"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Escolha gulosa de pilha por ordem de saída.",
+        "mais_complexa": "Vários guindastes, chegada de navios, visualização 2D do pátio."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "armazem-robos",
+      "nome": "Armazém com robôs",
+      "categoria": "logistica-e-industria",
+      "cenario": "Robôs se movem numa grade buscando prateleiras; dois robôs nunca podem ocupar a mesma célula ao mesmo tempo.",
+      "nucleo_tecnico": [
+        "caminho em grade",
+        "reserva de células no tempo",
+        "atribuição de tarefas",
+        "deadlock entre robôs"
+      ],
+      "algoritmos": [
+        "a-estrela",
+        "intervalos-sobreposicao",
+        "heap-fila-prioridade"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Rota de um robô em grade com obstáculos.",
+        "mais_complexa": "Vários robôs sem colisão, painel ao vivo e métricas de produtividade."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "cozinha-restaurante",
+      "nome": "Sistema de cozinha de restaurante",
+      "categoria": "logistica-e-industria",
+      "cenario": "Pratos de uma mesa têm tempos de preparo diferentes e devem ficar prontos juntos; a cozinha tem estações com capacidade limitada.",
+      "nucleo_tecnico": [
+        "agendamento de trás para frente",
+        "capacidade por estação",
+        "atrasos e reprogramação",
+        "telas por estação"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "ordenacao-topologica"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Calcular quando iniciar cada prato para saírem juntos.",
+        "mais_complexa": "Várias estações, telas ao vivo, atrasos e indicadores de tempo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "coleta-lixo",
+      "nome": "Coleta de lixo por sensores",
+      "categoria": "logistica-e-industria",
+      "cenario": "Lixeiras com sensor de nível informam quando estão enchendo; caminhões recebem rotas diárias só com as que precisam de coleta.",
+      "nucleo_tecnico": [
+        "previsão de enchimento",
+        "seleção de pontos",
+        "rota com capacidade",
+        "mapa"
+      ],
+      "algoritmos": [
+        "dijkstra",
+        "heap-fila-prioridade",
+        "janela-deslizante"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Previsão de enchimento por tendência.",
+        "mais_complexa": "Rotas otimizadas, vários caminhões e mapa ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "planilha-formulas",
+      "nome": "Motor de planilha",
+      "categoria": "ferramentas-de-desenvolvimento",
+      "cenario": "Planilha em que células têm fórmulas que referenciam outras; ao mudar uma célula, só as dependentes são recalculadas, e ciclos são detectados.",
+      "nucleo_tecnico": [
+        "parser de fórmulas",
+        "grafo de dependências",
+        "recálculo incremental",
+        "detecção de ciclo"
+      ],
+      "algoritmos": [
+        "ordenacao-topologica",
+        "grafo-bfs-dfs",
+        "hash-map-set"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Parser de fórmulas simples e recálculo.",
+        "mais_complexa": "Recálculo incremental, colaboração em tempo real e interface em Angular."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "editor-colaborativo",
+      "nome": "Editor de texto colaborativo",
+      "categoria": "ferramentas-de-desenvolvimento",
+      "cenario": "Várias pessoas editam o mesmo documento ao mesmo tempo, inclusive offline, e todos convergem para o mesmo texto.",
+      "nucleo_tecnico": [
+        "edições concorrentes",
+        "convergência (CRDT ou OT)",
+        "presença e cursores",
+        "sincronização após ficar offline"
+      ],
+      "algoritmos": [
+        "crdt",
+        "hash-map-set"
+      ],
+      "niveis": [
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Convergência de edições de dois clientes simulados.",
+        "mais_complexa": "Editor completo com presença, offline e histórico."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "motor-busca",
+      "nome": "Motor de busca de documentos",
+      "categoria": "ferramentas-de-desenvolvimento",
+      "cenario": "Busca em milhares de documentos com índice invertido, ranking por relevância e autocomplete enquanto a pessoa digita.",
+      "nucleo_tecnico": [
+        "índice invertido",
+        "ranking (TF-IDF ou BM25)",
+        "autocomplete por prefixo",
+        "atualização incremental do índice"
+      ],
+      "algoritmos": [
+        "trie",
+        "hash-map-set",
+        "heap-fila-prioridade"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Índice invertido e busca por termos.",
+        "mais_complexa": "Ranking, autocomplete com debounce, destaques e reindexação em segundo plano."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "sistema-build",
+      "nome": "Sistema de build",
+      "categoria": "ferramentas-de-desenvolvimento",
+      "cenario": "Ferramenta que compila módulos na ordem certa, em paralelo quando possível, e só recompila o que mudou.",
+      "nucleo_tecnico": [
+        "grafo de dependências",
+        "execução paralela respeitando ordem",
+        "cache por hash de conteúdo",
+        "detecção de ciclo"
+      ],
+      "algoritmos": [
+        "ordenacao-topologica",
+        "hash-map-set",
+        "grafo-bfs-dfs"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Ordem de build e detecção de ciclo.",
+        "mais_complexa": "Paralelismo, cache incremental, logs ao vivo e cache remoto."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "compressor-arquivos",
+      "nome": "Compressor de arquivos",
+      "categoria": "ferramentas-de-desenvolvimento",
+      "cenario": "Ferramenta que comprime e descomprime arquivos grandes em streaming, com verificação de integridade.",
+      "nucleo_tecnico": [
+        "codificação de Huffman",
+        "leitura e escrita por stream",
+        "manipulação de bits",
+        "checksum"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "hash-map-set"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Huffman sobre texto em memória.",
+        "mais_complexa": "Arquivos grandes por stream, processamento paralelo de blocos e API de upload."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "interpretador",
+      "nome": "Interpretador de mini linguagem",
+      "categoria": "ferramentas-de-desenvolvimento",
+      "cenario": "Linguagem de script pequena para automatizar regras de negócio: lexer, parser, avaliação e mensagens de erro úteis.",
+      "nucleo_tecnico": [
+        "análise léxica e sintática",
+        "árvore sintática",
+        "escopo de variáveis",
+        "erros com linha e coluna"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "hash-map-set"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Calculadora com variáveis.",
+        "mais_complexa": "Funções, condicionais, editor no navegador com destaque de erros e execução isolada."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "irrigacao-setores",
+      "nome": "Irrigação por setores",
+      "categoria": "agro",
+      "cenario": "Fazenda com água limitada por dia divide a irrigação entre setores com culturas diferentes, considerando umidade do solo e previsão de chuva.",
+      "nucleo_tecnico": [
+        "distribuição de recurso escasso",
+        "prioridade por cultura e estágio",
+        "previsão",
+        "agenda de válvulas sem conflito"
+      ],
+      "algoritmos": [
+        "programacao-dinamica",
+        "heap-fila-prioridade",
+        "intervalos-sobreposicao"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Agenda de válvulas sem ultrapassar a vazão.",
+        "mais_complexa": "Otimização da água, sensores ao vivo e painel da fazenda."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "silos-graos",
+      "nome": "Monitoramento de silos",
+      "categoria": "agro",
+      "cenario": "Silos com cabos de temperatura em várias alturas; pontos quentes indicam deterioração e o sistema liga a aeração no momento certo.",
+      "nucleo_tecnico": [
+        "matriz de sensores por silo",
+        "detecção de ponto quente",
+        "decisão de aeração por clima",
+        "rastreio de lotes"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Detecção de ponto quente num silo.",
+        "mais_complexa": "Vários silos, aeração automática e mapa de calor ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    },
+    {
+      "id": "aquaponia",
+      "nome": "Sistema de aquaponia",
+      "categoria": "agro",
+      "cenario": "Peixes e plantas no mesmo circuito de água; pH, amônia e oxigênio precisam ficar em faixas que servem aos dois.",
+      "nucleo_tecnico": [
+        "várias variáveis acopladas",
+        "dosagem com controle",
+        "alarmes",
+        "histórico"
+      ],
+      "algoritmos": [
+        "controlador-pid",
+        "janela-deslizante",
+        "ring-buffer"
+      ],
+      "niveis": [
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Monitoramento de pH com alarmes.",
+        "mais_complexa": "Dosagem automática, simulação do sistema e painel ao vivo."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular"
+      ]
+    }
+  ]
+}

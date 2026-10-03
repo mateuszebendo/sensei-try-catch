@@ -26,6 +26,10 @@
     "titulo": {
       "type": "string"
     },
+    "tema": {
+      "description": "id de temas.json. Obrigatório em questões novas; um tema novo é adicionado ao catálogo antes.",
+      "type": "string"
+    },
     "dificuldade": {
       "type": "integer",
       "minimum": 1,

@@ -18,7 +18,8 @@ Se faltar dificuldade, escolha a próxima que faz sentido pelo histórico (passo
    - **conceitos nunca usados**, que são os candidatos a conceito novo;
    - a maior dificuldade já feita por tecnologia;
    - os estilos de arquitetura já usados (`arquiteturas_usadas`);
-   - as estruturas e algoritmos já exigidos (`algoritmos_usados`).
+   - as estruturas e algoritmos já exigidos (`algoritmos_usados`);
+   - os temas já usados e as categorias das últimas questões (`temas_usados`, `categorias_recentes`).
 4. Leia por completo as 2–3 questões mais recentes das mesmas tecnologias, para não repetir cenário de negócio nem estrutura de requisitos.
 
 ## 2. Pesquisar
@@ -32,8 +33,24 @@ Coloque 1–4 links oficiais em `referencias`. Não invente URL: só use as que 
 
 ## 3. Desenhar a questão
 
-### Cenário
-Um problema de negócio plausível (clínica, biblioteca, frota, e-commerce pequeno, sistema de chamados, controle de estoque, eventos...). Varie o domínio entre questões. O `contexto` explica quem usa o sistema e por quê, em 3–6 frases.
+### Tema e cenário
+**Nada de cadastro genérico.** O aluno quer temas variados e diferentes: cancela de estacionamento, foguete, sismógrafo, matching engine, eclusa. Cada questão parte de um tema de `temas.json` e preenche o campo `tema`.
+
+1. **Escolha o tema**:
+   - Se o aluno pediu um tema, use-o (se não existir no catálogo, adicione-o primeiro, com núcleo técnico e algoritmos).
+   - Senão, escolha um tema **ainda não usado** (`temas_usados` no índice) cuja **categoria não apareça nas 3 últimas questões** (`categorias_recentes`) e que caiba no nível (`niveis`).
+   - Prefira temas cujo `nucleo_tecnico` combine com os conceitos e algoritmos que você escolheu para a questão.
+2. **Use o núcleo técnico**: o que torna o tema interessante (máquina de estados, limites físicos, tempo real, simulação, concorrência) tem de estar nos requisitos. Um "sistema de foguete" que é só cadastro de foguetes não vale.
+3. **Ajuste ao nível** com `variacoes`: `mais_simples` orienta os níveis baixos, `mais_complexa` os altos. Um tema pode voltar mais tarde em nível maior, evoluindo a questão anterior (use `pre_requisitos`).
+4. **Contexto**: 3–6 frases explicando quem opera o sistema, o que acontece se ele falhar e por que a regra principal existe. Use números reais do domínio (ângulo máximo, intervalo entre trens, frequência dos sensores).
+5. **Cadastro pode existir, mas como apoio**: cadastrar cancelas ou estações é aceitável se o centro da questão for o comportamento (abrir, detectar, decidir, simular).
+
+### Domínios físicos: simule o hardware
+Temas com sensores e atuadores (cancela, foguete, estufa, eclusa) não exigem hardware real. Defina na questão:
+- **Interface do dispositivo**: o que o sistema lê (ex.: `sensor_presenca`, `angulo_atual`, `altitude`, a cada 50 ms) e o que comanda (`abrir(angulo)`, `acionar_paraquedas()`).
+- **Simulador**: o aluno implementa um simulador simples com a física mínima (velocidade angular máxima, gravidade e arrasto, vazão de água) ou recebe um arquivo de leituras gravadas para replay. Física simplificada, mas com limites coerentes.
+- **Relógio injetável**: lógica de tempo testável sem esperar o tempo real (`TimeProvider` no .NET, relógio falso em JS).
+- **Segurança como requisito**: invariantes que nunca podem ser violadas ("a cancela nunca fecha com presença detectada", "o paraquedas nunca abre acima de X m/s") e testes que tentam violá-las, incluindo falha de sensor e leituras fora de ordem.
 
 ### Nível e escopo
 Siga a tabela de dificuldade do `CLAUDE.md`. Referência rápida:
@@ -127,4 +144,4 @@ Inclua nos `requisitos_funcionais` ou nos `criterios_aceite` a meta em linguagem
 
 Mostre ao aluno um resumo curto: título, dificuldade, tecnologias, contexto, requisitos, arquitetura escolhida (com a justificativa em 1–2 frases), restrições e os pontos com meta de complexidade. No modo livre, mostre a meta e esconda a estrutura esperada. **Não mostre as dicas.** Diga quais conceitos antigos estão sendo revisados e de onde vêm.
 
-Se o aluno pediu várias questões, faça todas antes de apresentar e garanta que tenham cenários diferentes entre si e uma progressão de dificuldade coerente.
+Se o aluno pediu várias questões, faça todas antes de apresentar e garanta que tenham temas de categorias diferentes entre si e uma progressão de dificuldade coerente.

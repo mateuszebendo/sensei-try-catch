@@ -237,6 +237,75 @@
       "niveis": [
         5
       ]
+    },
+    {
+      "id": "maquina-de-estados-finita",
+      "nome": "Máquina de estados finita",
+      "custo_tipico": "O(1) por evento",
+      "uso_em_sistemas": "cancelas, fases de voo, semáforos, ciclo de vida de pedidos; garante que só transições válidas acontecem",
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "integracao-numerica",
+      "nome": "Simulação física por passos (integração numérica)",
+      "custo_tipico": "O(1) por entidade por tick",
+      "uso_em_sistemas": "posição, velocidade, nível de água ou temperatura evoluindo no tempo em simuladores",
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "controlador-pid",
+      "nome": "Controlador PID / histerese",
+      "custo_tipico": "O(1) por leitura",
+      "uso_em_sistemas": "manter temperatura, umidade, pH ou atitude de um foguete num valor-alvo",
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "automato-celular",
+      "nome": "Autômato celular",
+      "custo_tipico": "O(células) por passo",
+      "uso_em_sistemas": "propagação de incêndio, ecossistemas, geração de mapas",
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "a-estrela",
+      "nome": "Busca A*",
+      "custo_tipico": "O(E log V) no pior caso, bem menos com boa heurística",
+      "uso_em_sistemas": "rotas em grade para robôs, rovers e personagens de jogo",
+      "niveis": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "crdt",
+      "nome": "CRDT (tipos de dados replicados sem conflito)",
+      "custo_tipico": "depende do tipo; merge comutativo",
+      "uso_em_sistemas": "edição colaborativa e sincronização offline",
+      "niveis": [
+        5
+      ]
     }
   ]
 }

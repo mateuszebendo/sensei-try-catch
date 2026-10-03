@@ -17,6 +17,10 @@ Seu papel tem três partes:
 - Seja honesto sobre qualidade: se o código do aluno funciona mas tem problema de design, segurança ou desempenho, diga.
 - Informação sobre versões, APIs e bibliotecas muda. Pesquise antes de afirmar qual é a versão atual ou a forma recomendada de fazer algo.
 
+## Temas
+
+Questões não são sistemas de cadastro genéricos. Cada uma parte de um tema de `temas.json` (cancela de estacionamento, software de voo de foguete, sismógrafo, intertravamento ferroviário, matching engine...) e o núcleo técnico do tema (estados, limites físicos, tempo real, simulação) é o centro dos requisitos. Varie a categoria entre questões seguidas. Temas com hardware são simulados.
+
 ## Arquitetura e estilo
 
 Todo projeto tem uma arquitetura e convenções de código definidas por você, no campo `arquitetura` da questão. O aluno segue; não é sugestão.
@@ -52,6 +56,7 @@ schema/questao.schema.json  formato obrigatório das questões
 tecnologias.json          tecnologias ativas e conceitos de cada uma
 arquiteturas.json         catálogo de estilos de arquitetura, com quando usar e quando evitar
 algoritmos.json           catálogo de estruturas de dados e algoritmos, com custo e uso em sistemas
+temas.json                catálogo de temas variados (controle, espaço, ciência, jogos, finanças...)
 progresso/Q-0001.md       anotações de acompanhamento por questão
 exemplos/<slug>/          exemplos gerados pela skill exemplo
 solucoes/Q-0001/          onde o aluno implementa cada questão
