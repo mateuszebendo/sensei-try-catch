@@ -104,7 +104,7 @@
     ]
   },
   "entregaveis": [
-    "Projeto em solucoes/Q-0001/",
+    "Projeto em pasta própria, fora do repositório do Sensei",
     "README com comando para rodar, exemplos de requisição (arquivo .http ou curl) e seção \"Análise de complexidade\""
   ],
   "criterios_aceite": [
