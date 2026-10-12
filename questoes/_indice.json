@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-12T02:51:26.879Z",
+  "gerado_em": "2026-10-12T22:56:47.886Z",
   "total": 1,
   "proximo_id": "Q-0002",
   "questoes": [
@@ -29,7 +29,7 @@
       ],
       "conceitos_revisados": [],
       "pre_requisitos": [],
-      "status": "em_andamento",
+      "status": "concluida",
       "criada_em": "2026-09-28"
     }
   ],
