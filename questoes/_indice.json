@@ -1,7 +1,7 @@
 {
-  "gerado_em": "2026-10-12T22:56:47.886Z",
-  "total": 1,
-  "proximo_id": "Q-0002",
+  "gerado_em": "2026-10-12T23:10:37.654Z",
+  "total": 2,
+  "proximo_id": "Q-0003",
   "questoes": [
     {
       "id": "Q-0001",
@@ -31,6 +31,38 @@
       "pre_requisitos": [],
       "status": "concluida",
       "criada_em": "2026-09-28"
+    },
+    {
+      "id": "Q-0002",
+      "arquivo": "Q-0002-eclusa-canal.json",
+      "titulo": "Controle de uma eclusa de canal navegável",
+      "dificuldade": 2,
+      "tecnologias": [
+        "dotnet"
+      ],
+      "tema": "eclusa-canal",
+      "categoria": "controle-e-automacao",
+      "arquitetura": [
+        "camadas-tradicional"
+      ],
+      "algoritmos": [
+        "janela-deslizante",
+        "ring-buffer"
+      ],
+      "conceitos": [
+        "controllers",
+        "autenticacao-jwt",
+        "tratamento-erros-problem-details",
+        "background-services"
+      ],
+      "conceitos_revisados": [
+        "ef-core",
+        "paginacao",
+        "validacao"
+      ],
+      "pre_requisitos": [],
+      "status": "nao_iniciada",
+      "criada_em": "2026-10-12"
     }
   ],
   "cobertura": {
@@ -40,25 +72,37 @@
           "Q-0001"
         ],
         "ef-core": [
-          "Q-0001"
+          "Q-0001",
+          "Q-0002"
         ],
         "validacao": [
-          "Q-0001"
+          "Q-0001",
+          "Q-0002"
         ],
         "paginacao": [
-          "Q-0001"
+          "Q-0001",
+          "Q-0002"
         ],
         "migrations": [
           "Q-0001"
+        ],
+        "controllers": [
+          "Q-0002"
+        ],
+        "autenticacao-jwt": [
+          "Q-0002"
+        ],
+        "tratamento-erros-problem-details": [
+          "Q-0002"
+        ],
+        "background-services": [
+          "Q-0002"
         ]
       },
       "nunca_usados": [
-        "controllers",
         "injecao-dependencia",
         "middleware",
-        "autenticacao-jwt",
         "autorizacao-policies",
-        "background-services",
         "cache-memoria",
         "cache-distribuido",
         "logging",
@@ -66,7 +110,6 @@
         "testes-integracao",
         "geracao-pdf",
         "upload-arquivos",
-        "tratamento-erros-problem-details",
         "signalr",
         "mensageria",
         "rate-limiting",
@@ -243,8 +286,14 @@
       ]
     }
   },
-  "temas_usados": {},
-  "categorias_recentes": [],
+  "temas_usados": {
+    "eclusa-canal": [
+      "Q-0002"
+    ]
+  },
+  "categorias_recentes": [
+    "controle-e-automacao"
+  ],
   "algoritmos_usados": {
     "hash-map-set": [],
     "ordenacao": [],
@@ -256,9 +305,13 @@
       "Q-0001"
     ],
     "dois-ponteiros-merge": [],
-    "janela-deslizante": [],
+    "janela-deslizante": [
+      "Q-0002"
+    ],
     "soma-prefixos": [],
-    "ring-buffer": [],
+    "ring-buffer": [
+      "Q-0002"
+    ],
     "heap-fila-prioridade": [],
     "trie": [],
     "lru-cache": [],
@@ -279,7 +332,9 @@
     "crdt": []
   },
   "arquiteturas_usadas": {
-    "camadas-tradicional": [],
+    "camadas-tradicional": [
+      "Q-0002"
+    ],
     "vertical-slice": [
       "Q-0001"
     ],
