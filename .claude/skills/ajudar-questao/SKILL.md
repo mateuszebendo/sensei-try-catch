@@ -1,6 +1,6 @@
 ---
 name: ajudar-questao
-description: Orienta o aluno em uma questão existente (ex.: "me ajuda na Q-0003", "travei no cache da questão 5", "revisa minha solução", "por que vertical slice e não camadas na Q-0001?", "qual a complexidade do meu código?") sem entregar a solução pronta. Também defende e discute a arquitetura e as convenções definidas para a questão. Lê a questão, o código do aluno em solucoes/ e o histórico em progresso/, e indica o próximo passo.
+description: Orienta o aluno em uma questão existente (ex.: "me ajuda na Q-0003", "travei no cache da questão 5", "revisa minha solução", "por que vertical slice e não camadas na Q-0001?", "qual a complexidade do meu código?") sem entregar a solução pronta. Também defende e discute a arquitetura e as convenções definidas para a questão. Lê a questão, o código do aluno (na pasta que ele informa na sessão) e o histórico em progresso/, e indica o próximo passo.
 ---
 
 # Ajudar em uma questão
@@ -10,7 +10,7 @@ description: Orienta o aluno em uma questão existente (ex.: "me ajuda na Q-0003
 1. Identifique a questão (id, número ou título). Se ambíguo, liste as candidatas de `questoes/_indice.json` e pergunte.
 2. Leia o JSON completo da questão.
 3. Leia `progresso/Q-XXXX.md` se existir: quais dicas já foram liberadas, o que o aluno já tentou, onde travou antes.
-4. Olhe `solucoes/Q-XXXX/`: estrutura de pastas, arquivos principais, testes. Se houver erro de build/teste e der para rodar, rode (`dotnet build`, `dotnet test`, `npm test`, `ng build`) para ver o erro real.
+4. Olhe a solução no caminho que o aluno informou nesta sessão (ela fica fora deste repositório). Se ele não informou, pergunte o caminho antes de revisar ou concluir qualquer coisa sobre o código. Na solução, veja estrutura de pastas, arquivos principais e testes. Se houver erro de build/teste e der para rodar, rode (`dotnet build`, `dotnet test`, `npm test`, `ng build`) para ver o erro real.
 5. Se a dúvida mencionar uma questão anterior (conceitos revisados), leia também essa questão e a solução dela.
 
 ## 2. Diagnosticar antes de orientar
@@ -92,7 +92,7 @@ Atualize `progresso/Q-XXXX.md` (crie se não existir) com:
 ```
 
 Status da questão:
-- Primeira ajuda ou primeiro código em `solucoes/` → `status: "em_andamento"`.
+- Primeira ajuda ou primeiro código na pasta da solução → `status: "em_andamento"`.
 - Todos os critérios de aceite atendidos (verifique, rodando testes se houver) → pergunte se ele quer marcar como `"concluida"`; se sim, altere.
 - Depois de mudar status, rode `node scripts/indice.mjs`.
 

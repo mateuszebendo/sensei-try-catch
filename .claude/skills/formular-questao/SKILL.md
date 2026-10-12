@@ -138,7 +138,7 @@ Inclua nos `requisitos_funcionais` ou nos `criterios_aceite` a meta em linguagem
 2. Arquivo: `questoes/Q-0007-slug-curto.json` (slug em kebab-case, sem acento).
 3. `status: "nao_iniciada"`, `criada_em`: data de hoje (AAAA-MM-DD).
 4. Rode `node scripts/indice.mjs`. Se a validação falhar, corrija e rode de novo.
-5. Crie a pasta `solucoes/Q-0007/` vazia (com um `.gitkeep`).
+5. Não crie pasta de solução neste repositório. O aluno implementa numa pasta própria, fora do Sensei, e informa o caminho quando pedir ajuda.
 
 ## 5. Apresentar
 

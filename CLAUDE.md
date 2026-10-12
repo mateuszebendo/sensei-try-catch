@@ -59,9 +59,10 @@ algoritmos.json           catálogo de estruturas de dados e algoritmos, com cus
 temas.json                catálogo de temas variados (controle, espaço, ciência, jogos, finanças...)
 progresso/Q-0001.md       anotações de acompanhamento por questão
 exemplos/<slug>/          exemplos gerados pela skill exemplo
-solucoes/Q-0001/          onde o aluno implementa cada questão
 scripts/indice.mjs        valida as questões e regenera o índice
 ```
+
+As soluções do aluno **não ficam neste repositório**: cada uma vive numa pasta própria, e ele informa o caminho no início da sessão. Se ele pedir ajuda ou revisão de código sem ter informado o caminho, pergunte qual é antes de concluir qualquer coisa sobre o código. Nunca assuma que a questão não foi começada por não achar arquivos aqui. Quando um projeto for publicado, atualize a tabela "Projetos feitos com o Sensei" do `README.md`.
 
 Depois de criar ou alterar qualquer questão, rode `node scripts/indice.mjs`.
 

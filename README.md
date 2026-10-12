@@ -20,10 +20,29 @@ Agente de IA (Claude Code) que formula questões de software em forma de sistema
 
 Também dá para chamar direto: `/formular-questao dotnet angular nível 4`.
 
+## Onde ficam as soluções
+
+As soluções **não ficam neste repositório**. Cada projeto vive na sua própria pasta (e, quando publicado, no seu próprio repositório).
+
+Para o Sensei enxergar o seu código, **informe o caminho da solução no início de toda sessão** em que for trabalhar numa questão:
+
+> Vou trabalhar na Q-0001. A solução está em `C:\...\solucoes\Q-0001`.
+
+Para ele também poder ler, compilar e rodar os testes, a pasta precisa estar liberada na sessão. No terminal, abra o Sensei com a pasta da solução adicionada:
+
+```bash
+claude --add-dir "C:\caminho\da\solucao"
+```
+
+## Projetos feitos com o Sensei
+
+| Questão | Projeto | Tecnologias | Nível | Status | Repositório |
+|---|---|---|---|---|---|
+| [Q-0001](questoes/Q-0001-reservas-salas.json) | API de reservas de salas de reunião | dotnet | 1 | em andamento | a publicar |
+
 ## Pastas
 
 - `questoes/`: uma questão por arquivo JSON (formato em `schema/questao.schema.json`).
-- `solucoes/Q-XXXX/`: onde você implementa.
 - `progresso/`: anotações do Sensei (dicas liberadas, onde você travou).
 - `exemplos/`: mini-projetos de exemplo.
 - `temas.json`: 67 temas em 13 categorias. Peça um tema específico ("questão sobre foguete") ou deixe o Sensei variar.
