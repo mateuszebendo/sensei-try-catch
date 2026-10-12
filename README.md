@@ -38,7 +38,7 @@ claude --add-dir "C:\caminho\da\solucao"
 
 | Questão | Projeto | Tecnologias | Nível | Status | Repositório |
 |---|---|---|---|---|---|
-| [Q-0001](questoes/Q-0001-reservas-salas.json) | API de reservas de salas de reunião | dotnet | 1 | concluída | a publicar |
+| [Q-0001](questoes/Q-0001-reservas-salas.json) | API de reservas de salas de reunião | dotnet | 1 | concluída | [reservas-salas-api](https://github.com/mateuszebendo/reservas-salas-api) |
 
 ## Pastas
 
