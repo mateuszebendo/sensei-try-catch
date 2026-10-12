@@ -11,6 +11,7 @@
     "financas-e-mercados",
     "jogos-e-entretenimento",
     "logistica-e-industria",
+    "negocios-e-atendimento",
     "saude",
     "transporte-e-mobilidade"
   ],
@@ -1859,6 +1860,277 @@
         "dotnet",
         "js",
         "angular"
+      ]
+    },
+    {
+      "id": "reservas-pousada",
+      "nome": "Reservas de pousada com atendimento por WhatsApp",
+      "categoria": "negocios-e-atendimento",
+      "cenario": "Pousada de serra com 14 chalés que recebe pedidos de reserva pelo WhatsApp e por dois sites de viagem; o mesmo chalé já foi vendido duas vezes no feriado porque a disponibilidade vivia numa planilha.",
+      "nucleo_tecnico": [
+        "disponibilidade por diárias como intervalos [check-in, check-out)",
+        "pré-reserva com bloqueio temporário que expira se o sinal não for pago",
+        "sincronização com canais externos sem overbooking",
+        "tarifa por temporada, feriado e estadia mínima"
+      ],
+      "algoritmos": [
+        "intervalos-sobreposicao",
+        "indice-btree-banco",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "API de disponibilidade e reserva de chalés com bloqueio de datas sobrepostas e estadia mínima.",
+        "mais_complexa": "Bot de WhatsApp que cota e pré-reserva, sincronização com canais externos, expiração de bloqueios em background e painel Angular de ocupação."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular",
+        "n8n",
+        "ia-aplicada",
+        "docker"
+      ]
+    },
+    {
+      "id": "agenda-clinica",
+      "nome": "Agenda de clínica com confirmação e lista de espera",
+      "categoria": "negocios-e-atendimento",
+      "cenario": "Clínica com 4 profissionais perde cerca de 20% das consultas por falta. Ela quer confirmar por WhatsApp 24 h antes e oferecer o horário liberado a quem está na lista de espera antes que ele fique vazio.",
+      "nucleo_tecnico": [
+        "estados da consulta (agendada, confirmada, cancelada, falta, realizada)",
+        "encaixe automático pela lista de espera com prioridade e prazo de resposta",
+        "grade de horários por profissional com duração por procedimento",
+        "lembretes agendados que não podem disparar em duplicidade"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "heap-fila-prioridade",
+        "intervalos-sobreposicao"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Agenda de um profissional com estados da consulta e bloqueio de horário duplicado.",
+        "mais_complexa": "Vários profissionais, lembretes por WhatsApp com resposta do paciente, encaixe automático pela lista de espera, métricas de faltas e painel em tempo real."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular",
+        "n8n",
+        "docker"
+      ]
+    },
+    {
+      "id": "gateway-mensagens-whatsapp",
+      "nome": "Gateway de mensagens de WhatsApp para vários clientes",
+      "categoria": "negocios-e-atendimento",
+      "cenario": "Uma agência atende 30 pequenos negócios com bots de WhatsApp. Os webhooks chegam duplicados e fora de ordem, e a API oficial limita o envio por número; uma mensagem perdida é um cliente que não foi atendido.",
+      "nucleo_tecnico": [
+        "deduplicação de webhooks (entrega pelo menos uma vez)",
+        "ordem preservada por conversa e paralelismo entre conversas",
+        "limite de envio por número com fila e retry com backoff",
+        "isolamento entre clientes (multi-tenant)"
+      ],
+      "algoritmos": [
+        "hash-map-set",
+        "token-bucket",
+        "bloom-filter",
+        "heap-fila-prioridade"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Receptor de webhook idempotente que grava mensagens uma única vez e responde rápido.",
+        "mais_complexa": "Gateway multi-tenant com fila, ordenação por conversa, rate limit por número, retry com dead-letter, observabilidade e deploy em containers."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "n8n",
+        "docker",
+        "kubernetes"
+      ]
+    },
+    {
+      "id": "atendimento-rag-loja",
+      "nome": "Assistente de atendimento com RAG sobre o catálogo da loja",
+      "categoria": "negocios-e-atendimento",
+      "cenario": "Loja de confecção com 2.000 produtos responde as mesmas perguntas o dia todo (tamanho, tecido, prazo, troca). O dono quer um assistente que responda só com base no catálogo e nas políticas, cite a fonte e passe para um humano quando não souber.",
+      "nucleo_tecnico": [
+        "ingestão e chunking do catálogo e das políticas",
+        "busca vetorial com top-k e filtro por metadados",
+        "resposta com citação e recusa quando não há fonte",
+        "handoff para humano, avaliação de respostas e custo por conversa"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "lru-cache",
+        "hash-map-set"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "API que indexa o FAQ, busca os trechos mais próximos e responde com citação, recusando quando a similaridade é baixa.",
+        "mais_complexa": "Assistente no WhatsApp com RAG, ferramentas (consultar estoque e pedido), guardrails de dados pessoais, conjunto de avaliação automatizado e painel de custo e qualidade."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "ia-aplicada",
+        "n8n",
+        "docker"
+      ]
+    },
+    {
+      "id": "pedidos-confeccao-atacado",
+      "nome": "Pedidos de atacado e produção em confecção",
+      "categoria": "negocios-e-atendimento",
+      "cenario": "Confecção de moda íntima vende no atacado por grade (tamanhos e cores) com pedido mínimo. A produção passa por corte, costura e acabamento, e o rolo de tecido precisa render o máximo de peças.",
+      "nucleo_tecnico": [
+        "pedido por grade com mínimo por modelo e reserva de estoque",
+        "etapas de produção com dependências e capacidade por setor",
+        "encaixe de moldes no rolo para minimizar desperdício",
+        "prazo de entrega estimado pela fila de produção"
+      ],
+      "algoritmos": [
+        "programacao-dinamica",
+        "ordenacao-topologica",
+        "heap-fila-prioridade"
+      ],
+      "niveis": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "API de pedidos por grade com validação de pedido mínimo e reserva de estoque sem vender o que não existe.",
+        "mais_complexa": "Planejamento de produção com etapas dependentes, otimização de corte, prazo estimado ao vivo no Angular e eventos entre serviços de vendas e produção."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular",
+        "docker"
+      ]
+    },
+    {
+      "id": "cobranca-recorrente-pix",
+      "nome": "Cobrança recorrente com Pix e régua de cobrança",
+      "categoria": "negocios-e-atendimento",
+      "cenario": "Um prestador de serviços cobra mensalidade de 40 clientes e concilia os Pix recebidos à mão no extrato. Cobrança duplicada ou lembrete enviado a quem já pagou faz perder cliente.",
+      "nucleo_tecnico": [
+        "estados da fatura (aberta, vencida, paga, cancelada) e régua de lembretes",
+        "conciliação de extrato com faturas por valor, data e identificador",
+        "idempotência de notificação de pagamento",
+        "juros e multa pró-rata por dia de atraso"
+      ],
+      "algoritmos": [
+        "maquina-de-estados-finita",
+        "dois-ponteiros-merge",
+        "hash-map-set"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "Geração de faturas mensais com estados e cálculo de multa e juros por atraso.",
+        "mais_complexa": "Webhook de pagamento idempotente, conciliação automática do extrato, régua de cobrança por WhatsApp e painel de inadimplência."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular",
+        "n8n"
+      ]
+    },
+    {
+      "id": "cozinha-delivery",
+      "nome": "Fila de cozinha de restaurante com pedidos por WhatsApp",
+      "categoria": "negocios-e-atendimento",
+      "cenario": "Restaurante recebe pedidos pelo balcão, pelo WhatsApp e por um app de entrega. Nos horários de pico a cozinha se perde e o tempo prometido ao cliente estoura.",
+      "nucleo_tecnico": [
+        "fila de preparo com prioridade por horário prometido",
+        "tempo estimado a partir do tempo médio recente de preparo",
+        "estados do pedido e painel da cozinha em tempo real",
+        "pico de pedidos sem perder nenhum"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "janela-deslizante",
+        "maquina-de-estados-finita"
+      ],
+      "niveis": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "variacoes": {
+        "mais_simples": "API de pedidos com estados e fila de preparo ordenada pelo horário prometido.",
+        "mais_complexa": "Pedidos de vários canais, tela da cozinha em tempo real, estimativa por janela deslizante e aviso automático ao cliente quando o pedido sai."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "angular",
+        "n8n"
+      ]
+    },
+    {
+      "id": "triagem-leads-ia",
+      "nome": "Triagem e qualificação de leads com IA",
+      "categoria": "negocios-e-atendimento",
+      "cenario": "Uma imobiliária recebe 300 contatos por semana por formulário e WhatsApp. Os corretores perdem tempo com curiosos enquanto os leads bons esfriam; a meta é responder os quentes em menos de 5 minutos.",
+      "nucleo_tecnico": [
+        "extração de dados do texto livre com saída estruturada validada",
+        "pontuação do lead e roteamento ao corretor com distribuição justa",
+        "conjunto de avaliação para medir precisão da classificação",
+        "fallback quando o modelo falha, custo por lead e dados pessoais protegidos"
+      ],
+      "algoritmos": [
+        "heap-fila-prioridade",
+        "hash-map-set",
+        "consistent-hashing"
+      ],
+      "niveis": [
+        3,
+        4,
+        5
+      ],
+      "variacoes": {
+        "mais_simples": "Endpoint que recebe o texto do lead, extrai campos com saída estruturada validada e calcula a pontuação.",
+        "mais_complexa": "Pipeline com fila, classificação por LLM com evals, roteamento entre corretores, alertas em tempo real e observabilidade de custo e latência."
+      },
+      "tecnologias_que_combinam": [
+        "dotnet",
+        "js",
+        "ia-aplicada",
+        "n8n",
+        "docker"
       ]
     }
   ]

@@ -26,7 +26,7 @@ Também dá para chamar direto: `/formular-questao dotnet angular nível 4`.
 - `solucoes/Q-XXXX/`: onde você implementa.
 - `progresso/`: anotações do Sensei (dicas liberadas, onde você travou).
 - `exemplos/`: mini-projetos de exemplo.
-- `temas.json`: 59 temas em 12 categorias. Peça um tema específico ("questão sobre foguete") ou deixe o Sensei variar.
+- `temas.json`: 67 temas em 13 categorias. Peça um tema específico ("questão sobre foguete") ou deixe o Sensei variar.
 - `algoritmos.json`: estruturas de dados e algoritmos que as questões podem exigir.
 - `arquiteturas.json`: estilos de arquitetura que o Sensei escolhe para cada projeto.
 - `tecnologias.json`: tecnologias e conceitos. Para adicionar uma tecnologia (ex.: `react`, `docker`), inclua em `ativas` e liste os conceitos.

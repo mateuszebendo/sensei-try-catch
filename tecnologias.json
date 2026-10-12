@@ -1,5 +1,5 @@
 {
-  "ativas": ["dotnet", "js", "angular", "docker", "kubernetes", "md-para-ia"],
+  "ativas": ["dotnet", "js", "angular", "docker", "kubernetes", "md-para-ia", "ia-aplicada", "n8n"],
   "conceitos": {
     "dotnet": [
       "minimal-api", "controllers", "injecao-dependencia", "ef-core", "migrations",
@@ -44,6 +44,21 @@
       "instrucoes-com-motivo", "estrutura-e-hierarquia", "exemplos-few-shot",
       "restricoes-e-limites", "formato-de-saida", "divisao-em-skills",
       "progressive-disclosure", "templates-de-prompt", "avaliacao-de-instrucoes"
+    ],
+    "ia-aplicada": [
+      "chamada-api-llm", "prompt-de-sistema", "saida-estruturada-json", "tool-calling",
+      "streaming-de-resposta", "embeddings", "chunking-de-documentos", "busca-vetorial",
+      "rag", "citacao-de-fontes", "agentes-e-orquestracao", "memoria-de-conversa",
+      "guardrails-e-pii", "avaliacao-evals", "observabilidade-de-ia", "custo-e-tokens",
+      "cache-de-respostas", "fallback-e-retry-de-modelo", "handoff-para-humano",
+      "azure-openai", "azure-ai-search", "microsoft-extensions-ai"
+    ],
+    "n8n": [
+      "workflows-e-nos", "webhooks", "gatilhos-agendados-cron", "credenciais",
+      "expressoes-e-code-node", "subworkflows", "tratamento-de-erros-e-retry",
+      "idempotencia-de-webhook", "integracao-whatsapp-api", "integracao-planilhas-crm",
+      "fila-e-modo-queue", "self-hosting-docker", "versionamento-de-workflows",
+      "no-de-ia-agente"
     ]
   }
 }
