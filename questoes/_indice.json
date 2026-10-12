@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-09-29T03:21:27.219Z",
+  "gerado_em": "2026-10-11T19:02:56.693Z",
   "total": 1,
   "proximo_id": "Q-0002",
   "questoes": [
@@ -11,6 +11,8 @@
       "tecnologias": [
         "dotnet"
       ],
+      "tema": null,
+      "categoria": null,
       "arquitetura": [
         "vertical-slice"
       ],
@@ -27,7 +29,7 @@
       ],
       "conceitos_revisados": [],
       "pre_requisitos": [],
-      "status": "nao_iniciada",
+      "status": "em_andamento",
       "criada_em": "2026-09-28"
     }
   ],
@@ -193,8 +195,56 @@
         "templates-de-prompt",
         "avaliacao-de-instrucoes"
       ]
+    },
+    "ia-aplicada": {
+      "usados": {},
+      "nunca_usados": [
+        "chamada-api-llm",
+        "prompt-de-sistema",
+        "saida-estruturada-json",
+        "tool-calling",
+        "streaming-de-resposta",
+        "embeddings",
+        "chunking-de-documentos",
+        "busca-vetorial",
+        "rag",
+        "citacao-de-fontes",
+        "agentes-e-orquestracao",
+        "memoria-de-conversa",
+        "guardrails-e-pii",
+        "avaliacao-evals",
+        "observabilidade-de-ia",
+        "custo-e-tokens",
+        "cache-de-respostas",
+        "fallback-e-retry-de-modelo",
+        "handoff-para-humano",
+        "azure-openai",
+        "azure-ai-search",
+        "microsoft-extensions-ai"
+      ]
+    },
+    "n8n": {
+      "usados": {},
+      "nunca_usados": [
+        "workflows-e-nos",
+        "webhooks",
+        "gatilhos-agendados-cron",
+        "credenciais",
+        "expressoes-e-code-node",
+        "subworkflows",
+        "tratamento-de-erros-e-retry",
+        "idempotencia-de-webhook",
+        "integracao-whatsapp-api",
+        "integracao-planilhas-crm",
+        "fila-e-modo-queue",
+        "self-hosting-docker",
+        "versionamento-de-workflows",
+        "no-de-ia-agente"
+      ]
     }
   },
+  "temas_usados": {},
+  "categorias_recentes": [],
   "algoritmos_usados": {
     "hash-map-set": [],
     "ordenacao": [],
@@ -220,7 +270,13 @@
     "programacao-dinamica": [],
     "k-way-merge": [],
     "consistent-hashing": [],
-    "bloom-filter": []
+    "bloom-filter": [],
+    "maquina-de-estados-finita": [],
+    "integracao-numerica": [],
+    "controlador-pid": [],
+    "automato-celular": [],
+    "a-estrela": [],
+    "crdt": []
   },
   "arquiteturas_usadas": {
     "camadas-tradicional": [],
